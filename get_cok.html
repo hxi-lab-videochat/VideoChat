@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>語句登録</title>
+  </head>
+  <body>
+    <p class="is-size-3">通知する語句を登録</p>
+    <!--
+    <h2 class=is-size-4>☆addition</h2>
+    <button class="button is-link is-outlined" onclick="sendcookies();">Save Text</button>
+    <br />
+    <textarea id="txt" cols="50" rows="5"></textarea>
+    <input class="input is-success" type="text" placeholder="Success input">
+
+    <h2 class=is-size-4>☆delete</h2>
+    <button class="button is-link is-outlined" onclick="getchecks();">delete_cookies</button>
+    <br>
+    <div id="cok">
+
+    </div>
+    <br>
+    <div id="c">
+      <h2 class=is-size-4>〇登録されているワード〇<br>↓ _______↓</h2>
+      <div id="cok1">
+
+      </div>
+    </div>
+    <br>
+    <h3 class=is-size-4>テストページ↓</h3>
+    <a href = 'test_cok.html'>test page</a>
+    <br>
+    <h3 class=is-size-4>ビデオチャット↓</h3>
+    <a href = 'index.html'>video chat</a>
+     -->
+    <div class="column is-two-thirds">
+      <nav class="panel is-info">
+        <p class="panel-heading">
+          ☆addition
+        </p>
+        <div class="panel-block">
+          <input id="save_text" class="input is-success is-fullwidth" type="text" placeholder="input">
+        </div>
+        <div class="panel-block">
+          <input id="save_text2" class="input is-success is-fullwidth" type="text" placeholder="input">
+        </div>
+        <div class="panel-block">
+          <input id="save_text3" class="input is-success is-fullwidth" type="text" placeholder="input">
+        </div>
+        <div class="panel-block">
+          <input id="save_text4" class="input is-success is-fullwidth" type="text" placeholder="input">
+        </div>
+        <div id="save_text"class="panel-block">
+          <input id="save_text5" class="input is-success is-fullwidth" type="text" placeholder="input">
+        </div>
+        <div class="panel-block">
+          <button class="button is-link is-outlined is-fullwidth" onclick="sendcookies();">登録</button>
+        </div>
+      </nav>
+    </div>
+    <!-- <button class="button is-link is-outlined" onclick="test_elm();">test_elm</button> -->
+    <div class="column is-two-thirds">
+      <nav class="panel  is-info">
+        <p class="panel-heading">
+          ☆delete
+        </p>
+        <label class="panel-block">
+          <div id="cok">
+
+          </div>
+        </label>
+        <div class="panel-block">
+          <button class="button is-link is-outlined is-fullwidth" onclick="getchecks();">削除</button>
+        </div>
+      </nav>
+    </div>
+
+    <div class="column is-two-thirds">
+      <nav class="panel  is-info">
+        <p class="panel-heading">
+          登録されているワード
+        </p>
+        <label class="panel-block">
+          <div id="cok1">
+
+          </div>
+        </label>
+        <div class="panel-block">
+          <!-- <button class="button is-link is-outlined is-fullwidth" onclick="getchecks();">delete_cookies</button> -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="column is-two-thirds">
+      <nav class="panel  is-info">
+        <p class="panel-heading">
+          ビデオチャットへ
+        </p>
+        <label class="panel-block">
+          <a class = "button  is-link is-outlined is-fullwidth" onclick="link_index()">video chat</a>
+        </label>
+        <div class="panel-block">
+        </div>
+      </nav>
+    </div>
+
+    <!-- <div class="column is-two-thirds">
+      <nav class="panel  is-info">
+        <p class="panel-heading">
+          〇テストページ↓
+        </p>
+        <label class="panel-block">
+          <a class = "button  is-link is-outlined is-fullwidth" href = 'test_cok.html'>test page</a>
+        </label>
+        <div class="panel-block">
+        </div>
+      </nav>
+    </div> -->
+
+
+    <script src="js/getcookies.js"></script>
+    <script src="js/param.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/0.0.11/push.min.js"></script>
+  </body>
+</html>
