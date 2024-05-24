@@ -371,6 +371,67 @@ at=false;
       room.send(autotxt)
     }
 
+    const raisehand = document.getElementById('raisehand');
+// 挙手ボタンイベント
+    raisehand.addEventListener('click', () => {
+      localText.value = '';
+      room.send({ pn: 'raisehand', msg: peer.id });
+      messages.textContent += '==対応に向かいます==\n';
+      let target = document.getElementById('js-messages');
+      target.scrollTo(0, target.scrollHeight);
+      console.log('挙手したユーザーのPeerID:', peer.id);
+    });
+
+    room.on('data', async ({ data, src }) => {
+      if (data.pn === 'raisehand') {
+        const targetpeerId = data.msg;
+        console.log('挙手したユーザーのPeerID:', targetpeerId);
+        var cv = document.querySelectorAll('.content video');
+
+        // 最初のCSSスタイル書き換え
+        cv.forEach(cv => {
+          cv.style.visibility = 'visible';
+        });
+
+        peer.listAllPeers((peers) => {
+          console.log(peers);
+          const mypeer = peer.id; // 自身のPeerIDを取得
+          peers.forEach(peerId => {
+            if (peerId !== targetpeerId && peerId !== mypeer) {
+              const otherVideo = remoteVideos.querySelector(`[data-peer-id="${peerId}"]`);
+              if (otherVideo) {
+                otherVideo.srcObject.getTracks().forEach(track => track.enabled = false);
+              }
+            }
+          });
+        });
+      }
+
+      if (data.pn === 'lowerhand') {
+        const targetpeerId = data.msg;
+        console.log('手を下げたユーザーのPeerID:', targetpeerId);
+        var cv = document.querySelectorAll('.content video');
+        // 最初のCSSスタイル書き換え
+        cv.forEach(cv => {
+          cv.style.visibility = 'hidden';
+        });
+
+        peer.listAllPeers((peers) => {
+          console.log(peers);
+          const mypeer = peer.id; // 自身のPeerIDを取得
+          peers.forEach(peerId => {
+            if (peerId !== targetpeerId && peerId !== mypeer) {
+              const remoteVideo = remoteVideos.querySelector(`[data-peer-id="${peerId}"]`);
+              if (remoteVideo) {
+                remoteVideo.srcObject.getTracks().forEach(track => track.enabled = true);
+              }
+              console.log(peerId);
+            }
+          });
+        });
+      }
+    });
+
   });
   peer.on('error', console.error);
 })();
