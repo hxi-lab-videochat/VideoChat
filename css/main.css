@@ -27,7 +27,6 @@
 }
 
 .content video {
-  visibility: hidden;
   flex: 0 1 calc(33% - 10px); /* 画面の横幅を3分割し、間隔を考慮して幅を設定 */
   height: 150px;
   margin: 1%;
