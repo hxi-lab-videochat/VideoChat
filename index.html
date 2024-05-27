@@ -9,12 +9,31 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     </head>  
     <body id = 'body_s'>
-        <section class="hero is-info is-medium">
+        <section class="hero is-info is-fullheight">
             <div class="hero-body">
               <p class="title">
                 top page
               </p>
-        </div>
+              <!-- <button class="button is-success is-rounded">受付</button>
+              <button class="button is-success is-rounded">職員</button> -->
+            </div>
+            <div class="hero-foot">
+                <nav class="tabs is-boxed is-fullwidth">
+                  <div class="container">
+                    <ul>
+                      <li class="is-active">
+                        <a>ー</a></li>
+                        <li><a href="VideoChat-guest/top.html">受付</a></li>
+                        <li><a href="VideoChat-staff/top.html" onclick=pushClick()>職員</a></li>
+                    </ul>
+                  </div>
+                </nav>
+              </div>
         </section>  
     </body>
+    <script>
+        function pushClick(){
+            console.log('pushed click');
+        }
+    </script>
 </html>
