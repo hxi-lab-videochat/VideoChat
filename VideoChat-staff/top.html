@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="img/kkrn_icon_saisei_3.png">
+        <title>
+            トップページ
+        </title>
+        <link rel="stylesheet" href="css/top.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    </head>  
+    <body id = 'body_s'>
+        <section class="hero is-info is-fullheight">
+            <nav class="navbar">
+                <div class="container">
+                  <div class="navbar-brand">
+                    <p class="title">
+                        トップページ
+                    </p>
+                  </div>
+                </div>
+            </nav>
+            <div class="hero-body">
+            <div id="stt">      
+                <div class = "container">
+                    <label class = 'label' for="rname">お名前を入力してください: </label>
+                    <input class = "input is-info" type ="text" id =rname placeholder="お名前を入力してください">
+                    <button class="button is-danger" id = name_bt onclick=joined()>決定</button>
+                </div>
+                <!-- <a  href="index.html" id= start>start</a> -->
+            </div>
+        </div>
+        </section>
+        
+<!--
+        <div>
+            <label><input type="radio" name="rl" value="customer">customer</label>
+            <label><input type="radio" name="rl" value="admin">admin</label>
+            <input id ="rid" type="text" placeholder="test">
+            <button type ="submit" id ="join" onclick="joined()">join</button>
+        </div>
+        <input type="button" id ="ten"  value ="test" onclick="ten()">-->
+        <div id="tn">
+        </div>      
+    </body>
+    <script src="js/top.js"></script>  
+</html>

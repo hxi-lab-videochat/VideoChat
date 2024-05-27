@@ -191,6 +191,8 @@ at=false;
     uname='hoge'+decode_name;
     strMyVideo.innerHTML=decode_name;
     strMyVideo.style.zIndex=10;
+    strMyVideo.style.position="absolute";
+    strMyVideo.style.color="white";
     var notifyname = {pn:"username",msg:decode_name};
     var joinname = {pn:"joinuser",msg:decode_name,prid:""};
 
@@ -219,6 +221,7 @@ at=false;
     // Render remote stream for new peer join in the room
     room.on('stream', async stream => {
       const remoteStream = document.createElement('div');
+      remoteStream.style.position="relative";
       remoteStream.setAttribute('streamId',stream.peerId);
       const newVideo = document.createElement('video');
       newVideo.srcObject = stream;
@@ -230,6 +233,9 @@ at=false;
       const strName = document.createElement('div');
       strName.setAttribute('userName',stream.peerId);
       strName.innerHTML='username';
+      strName.style.position="absolute";
+      strName.style.color="white";
+      newVideo.style.top=100;
       strName.style.zIndex=10;
       remoteStream.append(strName);
       remoteStream.append(newVideo);
@@ -370,6 +376,70 @@ at=false;
       var autotxt = {pn:"mojiokoshi",msg:userm()+';'+automsg};
       room.send(autotxt)
     }
+
+    const raisehand = document.getElementById('raisehand');
+    const handImage = document.querySelector("#raisehand img");
+    
+    // 挙手ボタンイベント
+    raisehand.addEventListener('click', () => {
+      const imgSrc = handImage.src.split('/').pop();
+      if (imgSrc !== "kyosyu2.png"){
+        handImage.src = "img/kyosyu2.png";
+        localText.value = '';
+        room.send('==対応に向かいます==\n');
+        //room.send(localStream)
+        messages.textContent += '==対応に向かいます==\n';
+        localText.value = '';
+        let target = document.getElementById('js-messages');
+        target.scrollTo(0,target.scrollHeight);
+        //customerwindow.postMessage({ type: 'raiseHandPressed' }, '*');
+        // 挙手したユーザーのPeerIDを送信
+        const peerId = peer.id
+        room.send({
+          pn: 'raisehand', // 挙手メッセージの識別子
+          msg: peerId // 挙手したユーザーのPeerID
+        });
+        console.log('挙手したユーザーのPeerID:', peerId);
+      }else{
+        handImage.src = "img/kyosyu.png";
+        localText.value = '';
+        room.send('==対応を終了します==\n');
+        //room.send(localStream)
+        messages.textContent += '==対応を終了します==\n';
+        localText.value = '';
+        let target = document.getElementById('js-messages');
+        target.scrollTo(0,target.scrollHeight);
+        //customerwindow.postMessage({ type: 'raiseHandPressed' }, '*');
+        // 挙手したユーザーのPeerIDを送信
+        const peerId = peer.id
+        room.send({
+          pn: 'lowerhand', // 挙手メッセージの識別子
+          msg: peerId // 挙手したユーザーのPeerID
+        });
+        console.log('手を下げたユーザーのPeerID:', peerId);
+      }
+
+    });
+
+    room.on('data', async ({ data, src }) => {
+  
+      if (data.pn === 'raisehand') {
+        const peerId = data.msg;
+        // 挙手したユーザーのPeerIDをコンソールに出力
+        console.log('挙手したユーザーのPeerID:', peerId);
+      }
+  
+    });
+
+    room.on('data', async ({ data, src }) => {
+  
+      if (data.pn === 'lowerhand') {
+        const peerId = data.msg;
+        // 手を下げたユーザーのPeerIDをコンソールに出力
+        console.log('手を下げたユーザーのPeerID:', peerId);
+      }
+  
+    });
 
   });
   peer.on('error', console.error);
