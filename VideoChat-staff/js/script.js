@@ -292,6 +292,9 @@ at=false;
             console.log(e);
           }
           return
+        }else if(data.pn=='raisehand' || data.pn=='lowerhand'){
+          console.log(data.pn);
+          return;
         }else{
         console.log(atxt);
         roommoji.innerHTML += '<div>'+ String(data.msg) +'</div>';
@@ -302,8 +305,11 @@ at=false;
       }
     }
       var user = data.split(":");
-      messages.textContent += `${user[0]}: ${cut(user[1])}\n`;
-      console.log(data);
+      if(user.length==1){
+        messages.textContent +=`${user}\n`
+      }else{
+        messages.textContent += `${user[0]}: ${cut(user[1])}\n`;
+      }
       let target = document.getElementById('js-messages');
       target.scrollTo(0,target.scrollHeight);
     });
