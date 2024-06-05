@@ -1,6 +1,7 @@
 const Peer = window.Peer;
 flg=false;
 at=false;
+let participantCount = 0;// 参加者のカウントを追加
 (async function main() {
   const localVideo = document.getElementById('js-local-stream');
   const joinTrigger = document.getElementById('js-join-trigger');
@@ -378,7 +379,8 @@ at=false;
     }
 
     const raisehand = document.getElementById('raisehand');
-// 挙手ボタンイベント
+
+    // 挙手ボタンイベント
     raisehand.addEventListener('click', () => {
       localText.value = '';
       room.send({ pn: 'raisehand', msg: peer.id });
@@ -392,26 +394,34 @@ at=false;
       if (data.pn === 'raisehand') {
         const targetpeerId = data.msg;
         console.log('挙手したユーザーのPeerID:', targetpeerId);
-        var cv = document.querySelectorAll('.content video');
+        //var cv = document.querySelectorAll('.content video');
+        document.querySelectorAll('.content video').forEach(video => {
+          video.style.visibility = 'hidden';
+        });
 
         // 最初のCSSスタイル書き換え
-        cv.forEach(cv => {
+        /*cv.forEach(cv => {
           cv.style.visibility = 'visible';
-        });
+        });*/
+        const targetVideo = remoteVideos.querySelector(`[data-peer-id="${targetpeerId}"]`);
 
-        peer.listAllPeers((peers) => {
-          console.log(peers);
-          const mypeer = peer.id; // 自身のPeerIDを取得
-          peers.forEach(peerId => {
-            if (peerId !== targetpeerId && peerId !== mypeer) {
-              const otherVideo = remoteVideos.querySelector(`[data-peer-id="${peerId}"]`);
-              if (otherVideo) {
-                otherVideo.srcObject.getTracks().forEach(track => track.enabled = false);
+        if (targetVideo) {
+          targetVideo.style.visibility = 'visible';
+
+          // 他のユーザーのビデオトラックを無効にする
+          peer.listAllPeers((peers) => {
+            peers.forEach(peerId => {
+              if (peerId !== targetpeerId) {
+                const otherVideo = remoteVideos.querySelector(`[data-peer-id="${peerId}"]`);
+                if (otherVideo) {
+                  otherVideo.srcObject.getTracks().forEach(track => track.enabled = false);
+                }
               }
-            }
+            });
           });
-        });
+        }
       }
+
 
       if (data.pn === 'lowerhand') {
         const targetpeerId = data.msg;
