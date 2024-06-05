@@ -127,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function(){
   
   }, false);
 // ev.style.visibility="hidden"
+//ストリームの非表示（使っていない
 check_stream.addEventListener('click',()=>{
         if(check_stream.checked){
             localV.style.visibility='hidden';
