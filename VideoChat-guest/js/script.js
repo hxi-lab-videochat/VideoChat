@@ -394,11 +394,15 @@ at=false;
         console.log('挙手したユーザーのPeerID:', targetpeerId);
         //var cv = document.querySelectorAll('.content video');
         document.querySelectorAll('.content video').forEach(video => {
+          console.log('aaaa')
           video.style.visibility = 'hidden';
         });
         const targetVideo = remoteVideos.querySelector(`[data-peer-id="${targetpeerId}"]`);
 
+        console.log('bbbb')
+
         if (targetVideo) {
+          console.log('cccc')
           targetVideo.style.visibility = 'visible';
 
           // 他のユーザーのビデオトラックを無効にする
@@ -417,7 +421,7 @@ at=false;
 
       if (data.pn === 'lowerhand') {
         const targetpeerId = data.msg;
-        console.log('12手を下げたユーザーのPeerID:', targetpeerId);
+        console.log('手を下げたユーザーのPeerID:', targetpeerId);
         var cv = document.querySelectorAll('.content video');
         // 最初のCSSスタイル書き換え
         cv.forEach(cv => {
