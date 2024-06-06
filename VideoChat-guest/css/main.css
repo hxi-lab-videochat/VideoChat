@@ -10,7 +10,7 @@
   border: 1px solid #000000;
 }
 
-.contents {
+.content {
   /* コンテンツ領域 */
   position: absolute;
   box-sizing: border-box;
@@ -26,7 +26,7 @@
   border: 1px solid #000000;
 }
 
-.contents video {
+.content video {
   visibility: hidden;
   position: absolute;
   max-width: 100%;
