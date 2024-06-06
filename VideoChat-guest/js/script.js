@@ -1,7 +1,6 @@
 const Peer = window.Peer;
 flg=false;
 at=false;
-let participantCount = 0;// 参加者のカウントを追加
 (async function main() {
   const localVideo = document.getElementById('js-local-stream');
   const joinTrigger = document.getElementById('js-join-trigger');
@@ -398,8 +397,9 @@ let participantCount = 0;// 参加者のカウントを追加
           video.style.visibility = 'hidden';
         });
         const targetVideo = remoteVideos.querySelector(`[data-peer-id="${targetpeerId}"]`);
-        
+
         if (targetVideo) {
+          console.log('ここまで');
           targetVideo.style.visibility = 'visible';
 
           // 他のユーザーのビデオトラックを無効にする
@@ -415,8 +415,6 @@ let participantCount = 0;// 参加者のカウントを追加
           });
         }
       }
-
-
 
       if (data.pn === 'lowerhand') {
         const targetpeerId = data.msg;
