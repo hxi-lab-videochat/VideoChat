@@ -379,8 +379,7 @@ let participantCount = 0;// 参加者のカウントを追加
     }
 
     const raisehand = document.getElementById('raisehand');
-
-    // 挙手ボタンイベント
+// 挙手ボタンイベント
     raisehand.addEventListener('click', () => {
       localText.value = '';
       room.send({ pn: 'raisehand', msg: peer.id });
@@ -398,13 +397,8 @@ let participantCount = 0;// 参加者のカウントを追加
         document.querySelectorAll('.content video').forEach(video => {
           video.style.visibility = 'hidden';
         });
-
-        // 最初のCSSスタイル書き換え
-        /*cv.forEach(cv => {
-          cv.style.visibility = 'visible';
-        });*/
         const targetVideo = remoteVideos.querySelector(`[data-peer-id="${targetpeerId}"]`);
-
+        
         if (targetVideo) {
           targetVideo.style.visibility = 'visible';
 
@@ -421,6 +415,7 @@ let participantCount = 0;// 参加者のカウントを追加
           });
         }
       }
+
 
 
       if (data.pn === 'lowerhand') {
