@@ -385,7 +385,7 @@ at=false;
       messages.textContent += '==対応に向かいます==\n';
       let target = document.getElementById('js-messages');
       target.scrollTo(0, target.scrollHeight);
-      console.log('挙手したユーザーのPeerID:', peer.id);
+      //console.log('挙手したユーザーのPeerID:', peer.id);
     });
 
     room.on('data', async ({ data, src }) => {
@@ -399,7 +399,6 @@ at=false;
         const targetVideo = remoteVideos.querySelector(`[data-peer-id="${targetpeerId}"]`);
 
         if (targetVideo) {
-          console.log('ここまで');
           targetVideo.style.visibility = 'visible';
 
           // 他のユーザーのビデオトラックを無効にする
