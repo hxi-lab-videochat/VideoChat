@@ -349,6 +349,7 @@ at=false;
     sendTrigger.addEventListener('click', onClickSend);
     leaveTrigger.addEventListener('click', () => room.close(), { once: true });
 
+
     function onClickSend() {
       // Send message to all of the peers in the room via websocket WebSocket経由でルーム内のすべてのピアにメッセージを送信する
       //ここif_12/14
@@ -370,73 +371,68 @@ at=false;
       room.send(autotxt)
     }
 
-
     const raisehand = document.getElementById('raisehand');
-// 挙手ボタンイベント
+    const handImage = document.querySelector("#raisehand img");
+    
+    // 挙手ボタンイベント
     raisehand.addEventListener('click', () => {
-      localText.value = '';
-      room.send({ pn: 'raisehand', msg: peer.id });
-      messages.textContent += '==対応に向かいます==\n';
-      let target = document.getElementById('js-messages');
-      target.scrollTo(0, target.scrollHeight);
-      console.log('挙手したユーザーのPeerID:', peer.id);
+      const imgSrc = handImage.src.split('/').pop();
+      if (imgSrc !== "kyosyu2.png"){
+        handImage.src = "img/kyosyu2.png";
+        localText.value = '';
+        room.send('==対応に向かいます==\n');
+        //room.send(localStream)
+        messages.textContent += '==対応に向かいます==\n';
+        localText.value = '';
+        let target = document.getElementById('js-messages');
+        target.scrollTo(0,target.scrollHeight);
+        //customerwindow.postMessage({ type: 'raiseHandPressed' }, '*');
+        // 挙手したユーザーのPeerIDを送信
+        const peerId = peer.id
+        room.send({
+          pn: 'raisehand', // 挙手メッセージの識別子
+          msg: peerId // 挙手したユーザーのPeerID
+        });
+        console.log('挙手したユーザーのPeerID:', peerId);
+      }else{
+        handImage.src = "img/kyosyu.png";
+        localText.value = '';
+        room.send('==対応を終了します==\n');
+        //room.send(localStream)
+        messages.textContent += '==対応を終了します==\n';
+        localText.value = '';
+        let target = document.getElementById('js-messages');
+        target.scrollTo(0,target.scrollHeight);
+        //customerwindow.postMessage({ type: 'raiseHandPressed' }, '*');
+        // 挙手したユーザーのPeerIDを送信
+        const peerId = peer.id
+        room.send({
+          pn: 'lowerhand', // 挙手メッセージの識別子
+          msg: peerId // 挙手したユーザーのPeerID
+        });
+        console.log('手を下げたユーザーのPeerID:', peerId);
+      }
+
     });
 
     room.on('data', async ({ data, src }) => {
+  
       if (data.pn === 'raisehand') {
-        const targetpeerId = data.msg;
-        console.log('挙手したユーザーのPeerID:', targetpeerId);
-        //var cv = document.querySelectorAll('.content video');
-        document.querySelectorAll('.content video').forEach(video => {
-          video.style.visibility = 'hidden';
-        });
-
-        // 最初のCSSスタイル書き換え
-        /*cv.forEach(cv => {
-          cv.style.visibility = 'visible';
-        });*/
-        const targetVideo = remoteVideos.querySelector(`[data-peer-id="${targetpeerId}"]`);
-
-        if (targetVideo) {
-          targetVideo.style.visibility = 'visible';
-
-          // 他のユーザーのビデオトラックを無効にする
-          peer.listAllPeers((peers) => {
-            peers.forEach(peerId => {
-              if (peerId !== targetpeerId) {
-                const otherVideo = remoteVideos.querySelector(`[data-peer-id="${peerId}"]`);
-                if (otherVideo) {
-                  otherVideo.srcObject.getTracks().forEach(track => track.enabled = false);
-                }
-              }
-            });
-          });
-        }
+        const peerId = data.msg;
+        // 挙手したユーザーのPeerIDをコンソールに出力
+        console.log('挙手したユーザーのPeerID:', peerId);
       }
+  
+    });
 
+    room.on('data', async ({ data, src }) => {
+  
       if (data.pn === 'lowerhand') {
-        const targetpeerId = data.msg;
-        console.log('手を下げたユーザーのPeerID:', targetpeerId);
-        var cv = document.querySelectorAll('.content video');
-        // 最初のCSSスタイル書き換え
-        cv.forEach(cv => {
-          cv.style.visibility = 'hidden';
-        });
-
-        peer.listAllPeers((peers) => {
-          console.log(peers);
-          const mypeer = peer.id; // 自身のPeerIDを取得
-          peers.forEach(peerId => {
-            if (peerId !== targetpeerId && peerId !== mypeer) {
-              const remoteVideo = remoteVideos.querySelector(`[data-peer-id="${peerId}"]`);
-              if (remoteVideo) {
-                remoteVideo.srcObject.getTracks().forEach(track => track.enabled = true);
-              }
-              console.log(peerId);
-            }
-          });
-        });
+        const peerId = data.msg;
+        // 手を下げたユーザーのPeerIDをコンソールに出力
+        console.log('手を下げたユーザーのPeerID:', peerId);
       }
+  
     });
 
   });
