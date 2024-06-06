@@ -402,7 +402,7 @@ at=false;
         console.log('bbbb')
 
         if (targetVideo) {
-          console.log('cccc')
+          console.log(targetVideo)
           targetVideo.style.visibility = 'visible';
 
           // 他のユーザーのビデオトラックを無効にする
