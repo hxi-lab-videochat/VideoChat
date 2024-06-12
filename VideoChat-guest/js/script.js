@@ -240,7 +240,13 @@ at=false;
       remoteStream.append(strName);
       remoteStream.append(newVideo);
       //remoteVideos.append(newVideo);
-      remoteVideos.append(remoteStream);
+      const boxContent = document.querySelector('.box.content .remote-streams');
+      // remoteStreamをboxContentに追加
+      if (boxContent) {
+        boxContent.append(remoteStream);
+      } else {
+        console.error("ccc");
+      }
       await newVideo.play().catch(console.error);
     });
 
@@ -399,10 +405,10 @@ at=false;
         });
         const targetVideo = remoteVideos.querySelector(`[data-peer-id="${targetpeerId}"]`);
 
-        console.log('bbbb')
 
         if (targetVideo) {
           console.log(targetVideo)
+          
           targetVideo.style.visibility = 'visible';
 
           // 他のユーザーのビデオトラックを無効にする

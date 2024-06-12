@@ -22,16 +22,32 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: space-between;
-  background: #FFFFFF;
+  background-color: #ffffff;
   border: 1px solid #000000;
 }
 
 .content video {
-  /*visibility: hidden;*/
+  visibility: hidden;
   position: absolute;
   max-width: 100%;
   max-height: 100%;
   border: 1px solid #000;
+  z-index: 11;
+}
+
+.remote-streams video {
+  width: 100%; 
+  height: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.remote-streams div[userName] {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: white;
+  z-index: 10;
 }
 
 .botom {
