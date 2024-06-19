@@ -23,6 +23,7 @@ speech.onresult = function(e) {
         console.log(e);
         if(flg_mute){
             mymoji.innerHTML += '<div>'+ userm()+";"+autotext +'</div>';
+            console.log(mymoji);
         }else{
             console.log('hoge');
         }

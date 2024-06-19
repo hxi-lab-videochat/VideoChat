@@ -174,7 +174,22 @@ at=false;
     flg=true;
     
     var check_type=Object.prototype.toString;
-
+        try{
+        var data2=location.href.split("=")[1];
+        var lu_name=decodeURI(data2);
+    }catch(e){
+        var lu_name="no name";
+    }
+    //location.href = "get_cok.html?"+"rid="+lu_name;
+    var moji_location="../Auto_Text.html?"+"rid="+lu_name;
+    var newWindow = window.open(moji_location,'_blank','top=100,left=100,width=700,height=500');
+    if( newWindow ) {
+    console.log('正常に開きました');
+    }
+    else {
+    console.log('正常に開けませんでした！');
+    newWindow.close();
+    }
     const room = peer.joinRoom("roomId_2", {
       //roomId.valueが元値
       mode: getRoomModeByHash(),
