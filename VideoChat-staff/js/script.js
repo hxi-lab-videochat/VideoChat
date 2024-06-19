@@ -191,8 +191,6 @@ at=false;
     uname='hoge'+decode_name;
     strMyVideo.innerHTML=decode_name;
     strMyVideo.style.zIndex=10;
-    strMyVideo.style.position="absolute";
-    strMyVideo.style.color="white";
     var notifyname = {pn:"username",msg:decode_name};
     var joinname = {pn:"joinuser",msg:decode_name,prid:""};
 
@@ -221,7 +219,6 @@ at=false;
     // Render remote stream for new peer join in the room
     room.on('stream', async stream => {
       const remoteStream = document.createElement('div');
-      remoteStream.style.position="relative";
       remoteStream.setAttribute('streamId',stream.peerId);
       const newVideo = document.createElement('video');
       newVideo.srcObject = stream;
@@ -233,9 +230,6 @@ at=false;
       const strName = document.createElement('div');
       strName.setAttribute('userName',stream.peerId);
       strName.innerHTML='username';
-      strName.style.position="absolute";
-      strName.style.color="white";
-      newVideo.style.top=100;
       strName.style.zIndex=10;
       remoteStream.append(strName);
       remoteStream.append(newVideo);
@@ -361,7 +355,6 @@ at=false;
     sendTrigger.addEventListener('click', onClickSend);
     leaveTrigger.addEventListener('click', () => room.close(), { once: true });
 
-
     function onClickSend() {
       // Send message to all of the peers in the room via websocket WebSocket経由でルーム内のすべてのピアにメッセージを送信する
       //ここif_12/14
@@ -383,10 +376,10 @@ at=false;
       room.send(autotxt)
     }
 
+
     const raisehand = document.getElementById('raisehand');
     const handImage = document.querySelector("#raisehand img");
-    
-    // 挙手ボタンイベント
+        // 挙手ボタンイベント
     raisehand.addEventListener('click', () => {
       const imgSrc = handImage.src.split('/').pop();
       if (imgSrc !== "kyosyu2.png"){

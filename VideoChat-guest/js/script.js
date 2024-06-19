@@ -240,7 +240,13 @@ at=false;
       remoteStream.append(strName);
       remoteStream.append(newVideo);
       //remoteVideos.append(newVideo);
-      remoteVideos.append(remoteStream);
+      const boxContent = document.querySelector('.box.content .remote-streams');
+      // remoteStreamをboxContentに追加
+      if (boxContent) {
+        boxContent.append(remoteStream);
+      } else {
+        console.error("ccc");
+      }
       await newVideo.play().catch(console.error);
     });
 
@@ -391,32 +397,38 @@ at=false;
       messages.textContent += '==対応に向かいます==\n';
       let target = document.getElementById('js-messages');
       target.scrollTo(0, target.scrollHeight);
-      console.log('挙手したユーザーのPeerID:', peer.id);
+      //console.log('挙手したユーザーのPeerID:', peer.id);
     });
 
     room.on('data', async ({ data, src }) => {
       if (data.pn === 'raisehand') {
         const targetpeerId = data.msg;
         console.log('挙手したユーザーのPeerID:', targetpeerId);
-        var cv = document.querySelectorAll('.content video');
-
-        // 最初のCSSスタイル書き換え
-        cv.forEach(cv => {
-          cv.style.visibility = 'visible';
+        //var cv = document.querySelectorAll('.content video');
+        document.querySelectorAll('.content video').forEach(video => {
+          console.log('aaaa')
+          video.style.visibility = 'hidden';
         });
+        const targetVideo = remoteVideos.querySelector(`[data-peer-id="${targetpeerId}"]`);
 
-        peer.listAllPeers((peers) => {
-          console.log(peers);
-          const mypeer = peer.id; // 自身のPeerIDを取得
-          peers.forEach(peerId => {
-            if (peerId !== targetpeerId && peerId !== mypeer) {
-              const otherVideo = remoteVideos.querySelector(`[data-peer-id="${peerId}"]`);
-              if (otherVideo) {
-                otherVideo.srcObject.getTracks().forEach(track => track.enabled = false);
+
+        if (targetVideo) {
+          console.log(targetVideo)
+          
+          targetVideo.style.visibility = 'visible';
+
+          // 他のユーザーのビデオトラックを無効にする
+          peer.listAllPeers((peers) => {
+            peers.forEach(peerId => {
+              if (peerId !== targetpeerId) {
+                const otherVideo = remoteVideos.querySelector(`[data-peer-id="${peerId}"]`);
+                if (otherVideo) {
+                  otherVideo.srcObject.getTracks().forEach(track => track.enabled = false);
+                }
               }
-            }
+            });
           });
-        });
+        }
       }
 
       if (data.pn === 'lowerhand') {
