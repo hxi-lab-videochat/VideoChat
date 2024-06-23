@@ -181,15 +181,6 @@ at=false;
         var lu_name="no name";
     }
     //location.href = "get_cok.html?"+"rid="+lu_name;
-    var moji_location="../Auto_Text.html?"+"rid="+lu_name;
-    var newWindow = window.open(moji_location,'_blank','top=100,left=100,width=700,height=500');
-    if( newWindow ) {
-    console.log('正常に開きました');
-    }
-    else {
-    console.log('正常に開けませんでした！');
-    newWindow.close();
-    }
     const room = peer.joinRoom("roomId_2", {
       //roomId.valueが元値
       mode: getRoomModeByHash(),
@@ -313,6 +304,7 @@ at=false;
         }else{
         console.log(atxt);
         roommoji.innerHTML += '<div>'+ String(data.msg) +'</div>';
+        postmsg(roommoji.innerText,'any');
         speechm(String(data.msg));
         // let moji_container=document.getElementById("mojiokoshi_container");
         // moji_container.scrollTo(0,moji_container.scrollHeight)
@@ -360,6 +352,7 @@ at=false;
       //   remoteVideo.remove();
       // });
       location.href="top.html"
+      newWindow.close();
       clearUser();
     });
 

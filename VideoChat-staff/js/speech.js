@@ -1,10 +1,24 @@
 var flg_mute=true;
 const speech = new webkitSpeechRecognition();
 speech.lang = 'ja-JP';
-          
+try{
+    var data2=location.href.split("=")[1];
+    var lu_name=decodeURI(data2);
+}catch(e){
+    var lu_name="no name";
+}      
 const btn = document.getElementById('btn');
 const content = document.getElementById('content');
 const mymoji = document.getElementById('menu_mymoji');
+var moji_location="../Auto_Text.html?"+"rid="+lu_name;
+var newWindow = window.open(moji_location,'_blank','top=100,left=100,width=700,height=500');
+if( newWindow ) {
+    console.log('正常に開きました');
+    }
+    else {
+    console.log('正常に開けませんでした！');
+    newWindow.close();
+}
 btn.addEventListener('click' , function() {
     // 音声認識をスタート
     console.log("start");
@@ -23,7 +37,8 @@ speech.onresult = function(e) {
         console.log(e);
         if(flg_mute){
             mymoji.innerHTML += '<div>'+ userm()+";"+autotext +'</div>';
-            console.log(mymoji);
+            postmsg(mymoji.innerText,'self');
+            //window.postMessage(mymoji.innerText);
         }else{
             console.log('hoge');
         }
@@ -60,3 +75,11 @@ function f_mute(){
 //     console.log("stop_byfunc");
 //     speech.stop();
 // }
+
+function postmsg(msg,user){
+    msgdata={
+        id:user,
+        msg:msg
+    }
+    newWindow.postMessage(msgdata);
+}
