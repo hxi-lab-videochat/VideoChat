@@ -140,7 +140,22 @@ at=false;
   const micButton = document.getElementById("mic-button");
   micButton.addEventListener('click', toggleMic);
 
-  
+  const actionsButton = document.getElementById("actions-button");
+  function actionsImg (){
+    const actionsImage = document.querySelector("#actions-button img");
+    const imgSrc = actionsImage.src.split('/').pop();
+    if(imgSrc=="mic_camera.png"){
+      actionsImage.src="img/mic_camera_off.png";
+    }else{
+      actionsImage.src="img/mic_camera.png";
+    }
+  }
+  actionsButton.addEventListener('click', function(){
+    toggleCamera();
+    toggleMic();
+    actionsImg();
+    raisehand.click();
+  });
 
   // Render local stream
   localVideo.muted = true;
@@ -201,6 +216,9 @@ at=false;
     strMyVideo.style.color="white";
     var notifyname = {pn:"username",msg:decode_name};
     var joinname = {pn:"joinuser",msg:decode_name,prid:""};
+    toggleCamera();
+    toggleMic();
+    actionsImg();
 
     //自分が参加したとき
     room.once('open',async () => {
