@@ -6,6 +6,7 @@ const check_stream=document.getElementById('check_stream');
 const localV = document.getElementById('js-local-stream');
 const remoteV = document.getElementById('js-remote-streams');
 const r_img=document.getElementById('r_img');
+var user={pn:'joinuser',users:{}}
 
 
 function cut(tx){
@@ -147,7 +148,6 @@ function pid(str){
     pid=str;
 }
 
-var user={pn:'joinuser',users:{}}
 function joinuser(key,id){
     if(key != null){
         user.users[id]=key

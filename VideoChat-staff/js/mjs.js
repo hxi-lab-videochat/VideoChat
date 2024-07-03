@@ -7,7 +7,7 @@ const localV = document.getElementById('js-local-stream');
 const remoteV = document.getElementById('js-remote-streams');
 const r_img=document.getElementById('r_img');
 
-
+var user={pn:'joinuser',users:{}};
 function cut(tx){
     let i =1;
     let j=0;
@@ -128,18 +128,18 @@ document.addEventListener('DOMContentLoaded', function(){
   }, false);
 // ev.style.visibility="hidden"
 //ストリームの非表示（使っていない
-check_stream.addEventListener('click',()=>{
-        if(check_stream.checked){
-            localV.style.visibility='hidden';
-            remoteV.style.visibility='hidden';
-            r_img.style.visibility='visible'
-        }else{
-            localV.style.visibility='visible';
-            remoteV.style.visibility='visible';
-            r_img.style.visibility='hidden';
-        }
-    }
-)
+// check_stream.addEventListener('click',()=>{
+//         if(check_stream.checked){
+//             localV.style.visibility='hidden';
+//             remoteV.style.visibility='hidden';
+//             r_img.style.visibility='visible'
+//         }else{
+//             localV.style.visibility='visible';
+//             remoteV.style.visibility='visible';
+//             r_img.style.visibility='hidden';
+//         }
+//     }
+// )
 
 ev.addEventListener('click',Cookies);
 var pid
@@ -147,7 +147,6 @@ function pid(str){
     pid=str;
 }
 
-var user={pn:'joinuser',users:{}}
 function joinuser(key,id){
     if(key != null){
         user.users[id]=key

@@ -105,40 +105,40 @@ at=false;
 
   function toggleCamera() {
     const videoTracks = localStream.getVideoTracks();
-    const cameraButton = document.getElementById("camera-button");
-    const cameraImage = document.querySelector("#camera-button img");
+    // const cameraButton = document.getElementById("camera-button");
+    // const cameraImage = document.querySelector("#camera-button img");
   
     if (videoTracks.length > 0 && videoTracks[0].enabled) {
       videoTracks.forEach(ctrack => ctrack.enabled = false);
-      cameraImage.src = "img/Ban.png";
+      // cameraImage.src = "img/Ban.png";
     } else {
       videoTracks.forEach(ctrack => ctrack.enabled = true);
-      cameraImage.src = "img/camera.png";
+      // cameraImage.src = "img/camera.png";
     }
   }
   
-  const cameraButton = document.getElementById("camera-button");
-  cameraButton.addEventListener('click', toggleCamera);
+  // const cameraButton = document.getElementById("camera-button");
+  // cameraButton.addEventListener('click', toggleCamera);
 
 
   function toggleMic() {
     const audioTracks = localStream.getAudioTracks();
-    const micButton = document.getElementById("mic-button");
-    const micImage = document.querySelector("#mic-button img");
+    // const micButton = document.getElementById("mic-button");
+    // const micImage = document.querySelector("#mic-button img");
   
     if (audioTracks.length > 0 && audioTracks[0].enabled) {
       audioTracks.forEach(mtrack => mtrack.enabled = false);
-      micImage.src = "img/muted.png";
+      // micImage.src = "img/muted.png";
       f_mute()
     } else {
       audioTracks.forEach(mtrack => mtrack.enabled = true);
-      micImage.src = "img/mic.png";
+      // micImage.src = "img/mic.png";
       f_mute()
     }
   }
   
-  const micButton = document.getElementById("mic-button");
-  micButton.addEventListener('click', toggleMic);
+  // const micButton = document.getElementById("mic-button");
+  // micButton.addEventListener('click', toggleMic);
 
   const actionsButton = document.getElementById("actions-button");
   function actionsImg (){
