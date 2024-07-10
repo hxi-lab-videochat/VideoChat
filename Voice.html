@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="VideoChat-staff/img/kkrn_icon_saisei_3.png">
+        <title>
+            トップページ
+        </title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    </head>  
+    <body id = 'body_s'>
+        <section class="hero is-info is-fullheight">
+            <div class="hero-body">
+              <p class="title">
+                voice-test
+              </p>
+              <p>__</p>
+              <div style="border: 1px solid black; width: 500px;">
+                <div id="volume" style="height: 10px; background: black; transition: width .1s; width: 0%"></div>
+              </div>
+              <button onClick="start()" type="button">スタート</button>
+            </div>
+        </section>  
+    </body>
+    <script>
+        function pushClick(){
+            console.log('pushed click');
+        }
+    </script>
+    <script src="VolMeter.js"></script>
+</html>
