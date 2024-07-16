@@ -2,6 +2,8 @@ const AudioContext = window.AudioContext || window.webkitAudioContext;
 const meter = document.getElementById('volume');
 
 function render(percent) {
+  //-130あたりがデフォルト
+  //数値が正になるとメータが動く
   console.log('Percent:', percent);
   //描画処理
   meter.style.background = percent < 100 ? 'black' : 'red';
