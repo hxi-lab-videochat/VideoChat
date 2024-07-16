@@ -189,7 +189,7 @@ at=false;
         console.log(e);
     }
     uname='hoge'+decode_name;
-    strMyVideo.innerHTML=decode_name;
+    //strMyVideo.innerHTML=decode_name;
     strMyVideo.style.zIndex=10;
     strMyVideo.style.position="absolute";
     strMyVideo.style.color="white";
