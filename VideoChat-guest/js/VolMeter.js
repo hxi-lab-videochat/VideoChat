@@ -33,3 +33,9 @@ async function startVoice() {
   const source = ctx.createMediaStreamSource(media);
   source.connect(processor);
 }
+
+document.getElementById('js-join-trigger').addEventListener('click', () => {
+  meter.style.visibility="visible";
+  console.log('startViceMeter');
+  startVoice();
+});

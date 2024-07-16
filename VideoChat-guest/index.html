@@ -121,9 +121,6 @@
 
         </script>
         <div class="box botom">
-          <!-- ボリュームメータ -->
-          <canvas id="volumeCanvas"></canvas>
-          <!-- <canvas id="frequencyCanvas"></canvas> -->
           <button id="js-join-trigger">参加</button>
           <button id="js-leave-trigger">退出</button>
           <button type="button" name="camera" id="camera-button" ><img src="img/camera.png"></button>
@@ -132,6 +129,12 @@
           <button type="button" id="notif" onclick="return notif2()"><img src="img/change.png" width="30" height="30"></button>
           <button type="button" id="notif" onclick="return notif3()"><img src="img/mark.png" width="30" height="30"></button> -->
           <button type="button" id="raisehand"><img src="img/kyosyu.png" width="50" height="50"></button>
+          <!-- ボリュームメータ -->
+          <!-- <canvas id="volumeCanvas"></canvas> -->
+          <!-- <canvas id="frequencyCanvas"></canvas> -->
+          <div style="border: 1px solid black; width: 500px;">
+            <div id="volume" style="height: 10px; background: black; transition: width .1s; width: 0%"></div>
+          </div>
         </div>
       </div>
 
@@ -158,5 +161,6 @@
     <script src="js/notification.js"></script>
     <script src="js/param.js"></script>
     <script src="js/VoiceVol.js"></script>
+    <script src="js/VolMeter.js"></script>
   </body>
 </html>
