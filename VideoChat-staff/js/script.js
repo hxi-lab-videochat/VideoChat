@@ -443,6 +443,7 @@ at=false;
           msg: peerId // 挙手したユーザーのPeerID
         });
         console.log('挙手したユーザーのPeerID:', peerId);
+        signOut.disabled=true;
       }else{
         handImage.src = "img/kyosyu.png";
         localText.value = '';
@@ -460,6 +461,7 @@ at=false;
           msg: peerId // 挙手したユーザーのPeerID
         });
         console.log('手を下げたユーザーのPeerID:', peerId);
+        signOut.disabled=false;
       }
 
     });
