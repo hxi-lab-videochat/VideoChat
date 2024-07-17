@@ -273,7 +273,7 @@ at=false;
       // var user={}
       if(typeof(data)=="object"){
         if(data.pn=='username'){
-          notify(0,data.msg+"がルームに参加しました");//通知をする
+          //notify(0,data.msg+"がルームに参加しました");//通知をする
           try{
             //console.log("hog+"+data.msg);
             peer.listAllPeers(async(peers) => {
@@ -318,6 +318,9 @@ at=false;
           return
         }else if(data.pn=='raisehand' || data.pn=='lowerhand'){
           console.log(data.pn);
+          return;
+        }else if(data.pn=="guestSignOut"){
+          console.log(String(data.msg));
           return;
         }else{
         console.log(atxt);
@@ -408,6 +411,14 @@ at=false;
       var autotxt = {pn:"mojiokoshi",msg:userm()+';'+automsg};
       room.send(autotxt)
     }
+    const signOut=document.getElementById('signout-button');
+    signOut.addEventListener('click',()=>{
+      console.log('get_print');
+      room.send({
+        pn:'guestSignOut',
+        msg:'event-signOut'
+      });
+    })
 
     const raisehand = document.getElementById('raisehand');
     const handImage = document.querySelector("#raisehand img");

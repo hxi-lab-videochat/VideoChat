@@ -4,7 +4,7 @@ const meter = document.getElementById('volume');
 function render(percent) {
   //-130あたりがデフォルト
   //数値が正になるとメータが動く
-  console.log('Percent:', percent);
+  //console.log('Percent:', percent);
   //描画処理
   meter.style.background = percent < 100 ? 'black' : 'red';
   meter.style.width = Math.min(Math.max(0, percent), 100) + '%';

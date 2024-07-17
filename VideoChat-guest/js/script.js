@@ -184,6 +184,7 @@ at=false;
       var uname=location.href.split("=")[1];
       var decode_name=decodeURI(uname);
       console.log(decode_name);
+      decode_name+='_Guest';
     }catch(e){
         var decode_name="no name";
         console.log(e);
@@ -300,6 +301,10 @@ at=false;
           return
         }else if(data.pn=='raisehand' || data.pn=='lowerhand'){
           console.log(data.pn);
+          return;
+        }else if(data.pn=="guestSignOut"){
+          console.log(String(data.msg));
+          leaveTrigger.click();
           return;
         }else{
         console.log(atxt);
