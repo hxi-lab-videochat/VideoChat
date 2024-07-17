@@ -403,12 +403,18 @@ at=false;
           console.log('aaaa')
           video.style.visibility = 'hidden';
         });
+        const contentdeviation = document.getElementsByClassName('content')[0].style.visibility="visible";
+        const wavedeviation =document.getElementsByClassName(`wavecontainer`)[0].style.visibility="collapse";
+        const roomdeviation =document.getElementsByClassName('room')[0].style.backgroundColor="#F0F8FF";
         const targetVideo = remoteVideos.querySelector(`[data-peer-id="${targetpeerId}"]`);
 
 
         if (targetVideo) {
           console.log(targetVideo)
-          
+
+          contentdeviation
+          wavedeviation
+          roomdeviation
           targetVideo.style.visibility = 'visible';
 
           // 他のユーザーのビデオトラックを無効にする
@@ -433,6 +439,12 @@ at=false;
         cv.forEach(cv => {
           cv.style.visibility = 'hidden';
         });
+        const contentdeviation = document.getElementsByClassName('content')[0].style.visibility="hidden";
+        const wavedeviation =document.getElementsByClassName(`wavecontainer`)[0].style.visibility="visible";
+        const roomdeviation =document.getElementsByClassName('room')[0].style.backgroundColor="#F0F8FF";
+        contentdeviation
+        wavedeviation
+        roomdeviation
 
         peer.listAllPeers((peers) => {
           console.log(peers);

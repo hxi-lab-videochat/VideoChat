@@ -1,4 +1,86 @@
-/* チャット */
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #333;
+  background: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#menu-bar, #nav-menu {
+  background: #333;
+  color: #fff;
+}
+
+#menu-bar a, #nav-menu ul li button {
+  color: #fff;
+  background: #555;
+  border: none;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+#nav-menu ul li button:hover {
+  background: #777;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.heading {
+  font-size: 2em;
+  color: #333;
+}
+
+.room {
+  position: absolute;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 75%;
+  height: 75%;
+  left: 0;
+  top: 0;
+  right: 0px;
+  margin: 0px;
+  padding: 0px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  z-index: 10;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  background: #fff;
+  padding: 20px;
+}
+
+.content video {
+  flex: 0 1 calc(33% - 10px);
+  height: 150px;
+  margin: 1%;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.chat, .send, .botom {
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  padding: 10px;
+}
+
 .chat {
   position: fixed;
   width: 24.7%;
@@ -6,95 +88,80 @@
   right: 0;
   top: 0;
   overflow-y: scroll;
-  background: #ffffff;
-  border: 1px solid #000000;
-}
-
-.content {
-  /* コンテンツ領域 */
-  position: absolute;
-  box-sizing: border-box;
-  width: 75%;
-  height: 75%;
-  left: 0;
-  top: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-content: space-between;
-  background: #FFFFFF;
-  border: 1px solid #000000;
-}
-
-.content video {
-  flex: 0 1 calc(33% - 10px); /* 画面の横幅を3分割し、間隔を考慮して幅を設定 */
-  height: 150px;
-  margin: 1%;
-  margin-bottom: 5px;
-}
-
-.botom {
-  /* ボタン領域 */
-  position: absolute;
-  width: 75%;
-  height: 25%;
-  left: 0;
-  bottom: 0;
-  background: #D9D9D9;
-  border: 1px solid #000000;
+  z-index: 11;
 }
 
 .send {
-  /* 送信など */
-  position: fixed;
-  width: 25%;
+  width: 24.8%;
   height: 10%;
+  position: fixed;
   right: 0;
   bottom: 0;
   background: #52C9EE;
-  border: 1px solid #000000;
+  z-index: 12;
 }
 
-.close {
-  /* 戻る */
+.botom {
   position: absolute;
-  width: 158px;
-  height: 41px;
-  left: calc(100% - 158px); /*1765;*/
-  top: 0px;
-  background: #D9D9D9;
+  width: 75%;
+  height: 24%;
+  left: 0;
+  bottom: 0;
+  background: #f9f9f9;
+  z-index: 9;
 }
 
-/* ストラクチャー */
-.btn {
-  display: inline-block;
-  width: 80px;
-  max-width: 100%;
-  padding: 20px 10px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
-  font-size: 18px;
-  line-height: 1.5;
-  text-align: center;
+button {
+  background: #40c0e7;
+  border: none;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
 }
 
-/* クリックエフェクト */
-.starImage.clicked {
-opacity: 0.7;
+button:hover {
+  background: #41b0d3;
 }
 
-/* 通知メッセージ */
+button img {
+  vertical-align: middle;
+}
+
+#js-join-trigger{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 150px;
+}
+#js-leave-trigger{
+  position: absolute;
+  left: 20 auto;
+  bottom: 0;
+  width: 150px;
+}
+
 .notification {
-position: fixed;
-top: 10px;
-right: 10px;
-padding: 10px 20px;
-background-color: #52C9EE;
-color: #ffffff;
-font-size: 16px;
-display: none;
+  background-color: #52C9EE;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: none;
 }
 
-#mojiokoshi_container{
+#mojiokoshi_container {
   height: 85%;
   overflow-y: scroll;
+}
+
+.t_cok{
+  visibility: hidden;
+}
+
+.note{
+  visibility: hidden;
 }
