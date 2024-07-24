@@ -18,6 +18,7 @@ at=false;
   const roommoji = document.getElementById('menu_roommoji');
   const mymoji=document.getElementById("menu_mymoji");
   const strMyVideo = document.getElementById('strmyvideo');
+  const signOut=document.getElementById('signout-button');
 
   meta.innerText = `
     UA: ${navigator.userAgent}
@@ -318,12 +319,18 @@ at=false;
           return
         }else if(data.pn=='raisehand' || data.pn=='lowerhand'){
           console.log(data.pn);
+          if(signOut.disabled){
+            signOut.disabled=false;
+            console.log('signOutButton-false');
+          }else{
+            signOut.disabled=true;
+          }
           return;
         }else if(data.pn=="guestSignOut"){
           console.log(String(data.msg));
           return;
         }else{
-        console.log(atxt);
+        //console.log(atxt);
         roommoji.innerHTML += '<div>'+ String(data.msg) +'</div>';
         postmsg(roommoji.innerText,'any');
         speechm(String(data.msg));
