@@ -46,7 +46,6 @@ async function startVoice() {
     .getUserMedia({ audio: true })
     .catch(console.error);
   const ctx = new AudioContext();
-  console.log("いけてる");
   console.log('Sampling Rate:', ctx.sampleRate);
 
   const processor = ctx.createScriptProcessor(1024, 1, 1);

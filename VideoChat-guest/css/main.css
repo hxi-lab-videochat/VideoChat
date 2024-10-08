@@ -60,21 +60,16 @@ body {
 
 .content {
   visibility: hidden;
-  background: #F0F8FF;
-  position: absolute;
-  top: 10px;
-  display:flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-content: space-between;
-  padding: 20px;
-  z-index: 20;
 }
 
+.remote-streams{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .content video {
-  flex: 0 1 calc(33% - 10px);
-  height: 150px;
-  margin: 1%;
+  margin: auto;
   margin-bottom: 5px;
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
@@ -94,7 +89,7 @@ body {
 }
 
 .chat {
-  visibility: hidden;
+  visibility: collapse;
   position: fixed;
   width: 24.7%;
   height: 90%;
@@ -116,13 +111,7 @@ body {
 }
 
 .botom {
-  position: absolute;
-  width: 75%;
-  height: 24%;
-  left: 0;
-  bottom: 0;
-  background: #f9f9f9;
-  z-index: 30;
+  visibility: collapse;
 }
 
 button {
@@ -143,19 +132,6 @@ button img {
   vertical-align: middle;
 }
 
-#js-join-trigger{
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 150px;
-  z-index: 20;
-}
-#js-leave-trigger{
-  position: absolute;
-  left: 20 auto;
-  bottom: 0;
-  width: 150px;
-}
 
 .notification {
   background-color: #52C9EE;
@@ -167,6 +143,7 @@ button img {
   right: 10px;
   display: none;
 }
+
 
 #mojiokoshi_container {
   height: 85%;

@@ -1,28 +1,3 @@
-/*#js-local-stream{
-    position: relative;
-    width:10px;
-}
-
-
-#js-local-stream{
-    z-index: 999999;
-    position:absolute;
-    width:50%;
-}
-
-#js-remote-streams{
-    z-index: 99999999;
-    position:relative;
-    width:1080px;
-}
-
-#js-meta{
-    font-size: 10px;
-}
-*/
-/* #js-local-stream,#js-remote-stream{
-    visibility:hidden;
-} */
 
 #r_img{
     position: absolute;
