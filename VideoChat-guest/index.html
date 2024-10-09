@@ -8,22 +8,25 @@
     <!-- <link rel="stylesheet" href="css/pr1.css"> -->
     <link rel="stylesheet" href="css/style_moji.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="styles_voice.css">
   </head>
   <body>
-    <div class=""></div>
+    <div class="all"></div>
     <div id="overlay" class="menu-event"></div>
     <div id="menu-bar">
       <a href="#" id="menu-button" class="menu-event">メニューを開く</a>
     </div>
     <nav id="nav-menu">
       <ul>
-        <!-- <li>
+        <li>
+          <div id="entry_exit">
+            <button id="js-join-trigger">参加</button>
+            <button id="js-leave-trigger">退出</button>
+          </div>
           <div id="stream">
             <input type="checkbox" id="check_stream" value='true'>
             <label for="check_stream">streamを非表示</label>
           </div>
-        </li> -->
+        </li>
         <!-- <li><a id='loc_top' href="top.html">top</a></li> -->
         <li><button id ="reg" onclick="link_getcok()">語句を登録</button></li>
       </ul>
@@ -52,6 +55,10 @@
         <a href="#">mesh</a> / <a href="#sfu">sfu</a> -->
       </p>
       <div class="room">
+        <div class="wavecontainer">
+          <div class="wave-ball"></div>
+          <div class="text">話しかけてください</div>
+        </div>
         <div class="box content">
           <div class="remote-streams" id="js-remote-streams"></div>
           <div id = 'localVideo'>
@@ -121,20 +128,12 @@
 
         </script>
         <div class="box botom">
-          <button id="js-join-trigger">参加</button>
-          <button id="js-leave-trigger">退出</button>
           <button type="button" name="camera" id="camera-button" ><img src="img/camera.png"></button>
           <button type="button" name="micmute" id="mic-button"><img src="img/mic.png"></button>
           <!-- <button type="button" id="notif" onclick="return notif()"><img src="img/good.png" width="30" height="30"></button>
           <button type="button" id="notif" onclick="return notif2()"><img src="img/change.png" width="30" height="30"></button>
           <button type="button" id="notif" onclick="return notif3()"><img src="img/mark.png" width="30" height="30"></button> -->
           <button type="button" id="raisehand"><img src="img/kyosyu.png" width="50" height="50"></button>
-          <!-- ボリュームメータ -->
-          <!-- <canvas id="volumeCanvas"></canvas> -->
-          <!-- <canvas id="frequencyCanvas"></canvas> -->
-          <div style="border: 1px solid black; width: 500px;">
-            <div id="volume" style="height: 10px; background: black; transition: width .1s; width: 0%"></div>
-          </div>
         </div>
       </div>
 
@@ -160,7 +159,6 @@
     <script src="js/speech.js"></script>
     <script src="js/notification.js"></script>
     <script src="js/param.js"></script>
-    <script src="js/VoiceVol.js"></script>
     <script src="js/VolMeter.js"></script>
   </body>
 </html>

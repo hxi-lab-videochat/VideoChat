@@ -1,13 +1,35 @@
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const meter = document.getElementById('volume');
+const waveBall = document.querySelector('.wave-ball');
+let thresholdTimer = null;
+timejudge = false;
+const THRESHOLD = 10;
+const THRESHOLD_DURATION = 500; //ミリ秒
 
 function render(percent) {
   //-130あたりがデフォルト
   //数値が正になるとメータが動く
-  //console.log('Percent:', percent);
-  //描画処理
-  meter.style.background = percent < 100 ? 'black' : 'red';
-  meter.style.width = Math.min(Math.max(0, percent), 100) + '%';
+  //onsole.log('Percent:', percent);
+  // 音量が70を超えた場合、アニメーションを激しくする
+  if (percent > THRESHOLD) {
+    if (thresholdTimer){
+        clearTimeout(thresholdTimer);
+        thresholdTimer = null;
+    }
+    console.log("ima");
+    waveBall.classList.add('active');
+    timejudge = false;
+  } else {
+    if (!timejudge){
+        timejudge = true;
+        thresholdTimer = setTimeout(() => {
+            waveBall.classList.remove('active');
+            timejudge = false;
+        }, THRESHOLD_DURATION)
+
+    }
+    
+  }
 }
 
 function onProcess(event) {
@@ -35,7 +57,6 @@ async function startVoice() {
 }
 
 document.getElementById('js-join-trigger').addEventListener('click', () => {
-  meter.style.visibility="visible";
   console.log('startViceMeter');
   startVoice();
 });

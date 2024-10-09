@@ -1,117 +1,214 @@
-/* チャット */
+body {
+  color: #F0F8FF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #F0F8FF;
+  margin: 0;
+  z-index: 100;
+}
+.all {
+  color: #F0F8FF;
+}
+#menu-bar, #nav-menu {
+  background: #333;
+  color: #fff;
+}
+
+#menu-bar a, #nav-menu ul li button {
+  color: #fff;
+  background: #555;
+  border: none;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+#nav-menu ul li button:hover {
+  background: #777;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.heading {
+  font-size: 2em;
+  color: #333;
+}
+
+.room {
+  background-color: #F0F8FF;
+  position: absolute;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  right: 0px;
+  margin: 0px;
+  padding: 0px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  z-index: 10;
+}
+
+.content {
+  visibility: hidden;
+}
+
+.remote-streams{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.content video {
+  margin: auto;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+#localVideo {
+  visibility: collapse;
+}
+.strmyvideo{
+  visibility: hidden;
+}
+.chat, .send, .botom {
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  padding: 10px;
+}
+
 .chat {
+  visibility: collapse;
   position: fixed;
   width: 24.7%;
   height: 90%;
   right: 0;
   top: 0;
   overflow-y: scroll;
-  background: #ffffff;
-  border: 1px solid #000000;
-}
-
-.content {
-  /* コンテンツ領域 */
-  position: absolute;
-  box-sizing: border-box;
-  width: 75%;
-  height: 75%;
-  left: 0;
-  top: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-content: space-between;
-  background-color: #ffffff;
-  border: 1px solid #000000;
-}
-
-.content video {
-  visibility: hidden;
-  position: absolute;
-  max-width: 100%;
-  max-height: 100%;
-  border: 1px solid #000;
   z-index: 11;
 }
 
-.remote-streams video {
-  width: 100%; 
-  height: auto;
-  position: relative;
-  z-index: 1;
-}
-
-.remote-streams div[userName] {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  color: white;
-  z-index: 10;
-}
-
-.botom {
-  /* ボタン領域 */
-  position: absolute;
-  width: 75%;
-  height: 25%;
-  left: 0;
-  bottom: 0;
-  background: #D9D9D9;
-  border: 1px solid #000000;
-}
-
 .send {
-  /* 送信など */
-  position: fixed;
-  width: 25%;
+  visibility: hidden;
+  width: 24.8%;
   height: 10%;
+  position: fixed;
   right: 0;
   bottom: 0;
   background: #52C9EE;
-  border: 1px solid #000000;
+  z-index: 12;
 }
 
-.close {
-  /* 戻る */
-  position: absolute;
-  width: 158px;
-  height: 41px;
-  left: calc(100% - 158px); /*1765;*/
-  top: 0px;
-  background: #D9D9D9;
+.botom {
+  visibility: collapse;
 }
 
-/* ストラクチャー */
-.btn {
-  display: inline-block;
-  width: 80px;
-  max-width: 100%;
-  padding: 20px 10px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
-  font-size: 18px;
-  line-height: 1.5;
-  text-align: center;
+button {
+  background: #40c0e7;
+  border: none;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
 }
 
-/* クリックエフェクト */
-.starImage.clicked {
-opacity: 0.7;
+button:hover {
+  background: #41b0d3;
 }
 
-/* 通知メッセージ */
+button img {
+  vertical-align: middle;
+}
+
+
 .notification {
-position: fixed;
-top: 10px;
-right: 10px;
-padding: 10px 20px;
-background-color: #52C9EE;
-color: #ffffff;
-font-size: 16px;
-display: none;
+  background-color: #52C9EE;
+  color: #F0F8FF;
+  padding: 10px 20px;
+  border-radius: 5px;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: none;
 }
 
-#mojiokoshi_container{
+
+#mojiokoshi_container {
   height: 85%;
   overflow-y: scroll;
+}
+
+.t_cok{
+  visibility: hidden;
+}
+
+.note{
+  visibility: hidden;
+}
+
+.wavecontainer{
+  visibility: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.wave-ball {
+  width: 150px;
+  height: 150px;
+  margin-top: 300px;
+  background-color: #00aaff;
+  border-radius: 50%;
+  position: relative;
+  animation: wave 5s infinite;
+}
+.text {
+  margin-top: 50px;
+  font-size: 24px;
+  color: #000000;
+}
+
+.wave-ball.active {
+  animation: wave-active 1s infinite;
+}
+
+@keyframes wave {
+  0%, 100% {
+      box-shadow: 0 0 0 10px rgba(0, 170, 255, 0.5), 
+                  0 0 0 20px rgba(0, 170, 255, 0.3), 
+                  0 0 0 30px rgba(0, 170, 255, 0.1);
+  }
+  50% {
+      box-shadow: 0 0 0 5px rgba(0, 170, 255, 0.5), 
+                  0 0 0 10px rgba(0, 170, 255, 0.3), 
+                  0 0 0 15px rgba(0, 170, 255, 0.1);
+  }
+}
+
+@keyframes wave-active {
+  0%, 100% {
+      box-shadow: 0 0 0 10px rgba(0, 170, 255, 0.7), 
+                  0 0 0 25px rgba(0, 170, 255, 0.5), 
+                  0 0 0 40px rgba(0, 170, 255, 0.3), 
+                  0 0 0 55px rgba(0, 170, 255, 0.1);
+  }
+  50% {
+      box-shadow: 0 0 0 5px rgba(0, 170, 255, 0.7), 
+                  0 0 0 15px rgba(0, 170, 255, 0.5), 
+                  0 0 0 25px rgba(0, 170, 255, 0.3), 
+                  0 0 0 35px rgba(0, 170, 255, 0.1);
+  }
 }
