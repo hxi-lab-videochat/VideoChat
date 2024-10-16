@@ -19,6 +19,7 @@ at=false;
   const mymoji=document.getElementById("menu_mymoji");
   const strMyVideo = document.getElementById('strmyvideo');
   const signOut=document.getElementById('signout-button');
+  const ReactionHand = document.getElementById('actions-button');
 
   meta.innerText = `
     UA: ${navigator.userAgent}
@@ -321,9 +322,17 @@ at=false;
           console.log(data.pn);
           if(signOut.disabled){
             signOut.disabled=false;
-            console.log('signOutButton-false');
+            console.log('signOutButton-True');
           }else{
             signOut.disabled=true;
+          }
+          if(ReactionHand.disabled){
+            ReactionHand.disabled=false;
+            //console.log('raisehandButton-True');
+          }else{
+            ReactionHand.disabled=true;
+            //console.log('raisehandButton-ks');
+            console.log(ReactionHand.disabled);
           }
           return;
         }else if(data.pn=="guestSignOut"){

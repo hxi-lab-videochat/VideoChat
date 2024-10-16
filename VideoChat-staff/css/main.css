@@ -98,3 +98,21 @@ display: none;
   height: 85%;
   overflow-y: scroll;
 }
+
+#menu-bar, #nav-menu {
+  background: #333;
+  color: #fff;
+}
+
+#menu-bar a, #nav-menu ul li button {
+  color: #fff;
+  background: #555;
+  border: none;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+#nav-menu ul li button:hover {
+  background: #777;
+}
