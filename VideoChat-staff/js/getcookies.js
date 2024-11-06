@@ -195,7 +195,10 @@ function spl(){
         var sp_num = sp_name[0].replace("name","");
         try{
             sp_num=Number(sp_num);
-            ls_num.push(sp_num);
+            if(!isNaN(sp_num)){
+                console.log(sp_num);
+                ls_num.push(sp_num);
+            }
         }catch(e){
             console.log("name isnot number");
         }        

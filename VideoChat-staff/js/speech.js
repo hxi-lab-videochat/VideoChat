@@ -28,26 +28,26 @@ btn.addEventListener('click' , function() {
 //---------------追記---------------//
 //音声自動文字起こし機能
 
-speech.onresult = function(e) {
+speech.onresult = async function(e) {
     speech.stop();
     if(e.results[0].isFinal){
-        var autotext =  e.results[0][0].transcript
+        var autotext =  await e.results[0][0].transcript
         var expire = new Date();
-        expire.setTime( expire.getTime() + 1000 * 3600 * 24*365 );
+        await expire.setTime( expire.getTime() + 1000 * 3600 * 24*365 );
         console.log(e);
         if(flg_mute){
             mymoji.innerHTML += '<div>'+ userm()+";"+autotext +'</div>';
             postmsg(mymoji.innerText,'self');
             //window.postMessage(mymoji.innerText);
         }else{
-            console.log('hoge');
+            console.log('mutefalse');
         }
         //speechm(autotext);
         document.cookie = "autotxt="+autotext+'; expires=' + expire.toUTCString();
         if(flg_mute){
-            ev_click();
+            ev_click();//文字起こしを送る他の人に
         }else{
-            console.log('moge');
+            console.log('mute_false');
         }        
     }
 }

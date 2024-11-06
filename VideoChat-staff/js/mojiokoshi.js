@@ -8,7 +8,10 @@ function GCookies()
     var r = document.cookie.split(';'); 
     r.forEach(function(value) { 
         var content = value.split('=');
-        list.push( content[1] );
+        if(content[0]!=' autotxt' && content[0]!=' poptext'){
+            console.log(content[0]);
+            list.push( content[1] );
+        }  
     })
     return list;
 }
@@ -44,11 +47,11 @@ function autotxtcookie(){
 
 
 //語句があれば通知
-function speechm(te){
+async function speechm(te){
     //content.innerHTML += "test"
     //const ls=["こんにちは","おはよう","漢字"];
-    var ls=GCookies();
-    console.log(ls,te);
+    var ls= GCookies();
+    console.log(ls, te);
     if(ls==""){
         return;
     }
@@ -59,12 +62,13 @@ function speechm(te){
             }
             let c = te.slice(m,(ls[i].length+m));
             if(c==ls[i]){
-                notify(1,c);
+                notify(1,c);//1106:相手の話したことすべてに通知が来るバグ>>誰か対応中はつかわないか
                 break
             }
         }
     }
     //content.innerHTML += ls;
+    return;
 }
 
 function ev_click(){
