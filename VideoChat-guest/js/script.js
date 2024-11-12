@@ -128,9 +128,6 @@ at=false;
     }
     uname='hoge'+decode_name;
     strMyVideo.innerHTML=decode_name;
-    strMyVideo.style.zIndex=10;
-    strMyVideo.style.position="absolute";
-    strMyVideo.style.color="white";
     var notifyname = {pn:"username",msg:decode_name};
     var joinname = {pn:"joinuser",msg:decode_name,prid:""};
 
@@ -159,6 +156,7 @@ at=false;
     // Render remote stream for new peer join in the room
     room.on('stream', async stream => {
       const remoteStream = document.createElement('div');
+      remoteStream.classList.add('AllStream')
       remoteStream.style.position="relative";
       remoteStream.setAttribute('streamId',stream.peerId);
       const newVideo = document.createElement('video');
@@ -169,12 +167,10 @@ at=false;
       newVideo.setAttribute('data-peer-id', stream.peerId);
       //ビデオ要素の上から要素を表示したい
       const strName = document.createElement('div');
+      strName.classList.add('Named')
       strName.setAttribute('userName',stream.peerId);
       strName.innerHTML='username';
-      strName.style.position="absolute";
-      strName.style.color="white";
       newVideo.style.top=100;
-      strName.style.zIndex=10;
       remoteStream.append(strName);
       remoteStream.append(newVideo);
       //remoteVideos.append(newVideo);
@@ -337,20 +333,24 @@ at=false;
         const targetpeerId = data.msg;
         console.log('挙手したユーザーのPeerID:', targetpeerId);
         //var cv = document.querySelectorAll('.content video');
-        document.querySelectorAll('.content video').forEach(video => {
-          console.log('aaaa')
-          video.style.visibility = 'hidden';
+        document.querySelectorAll('.Named').forEach(namedElem => {
+          namedElem.style.visibility = 'hidden';
         });
-        const contentdeviation = document.getElementsByClassName('content')[0].style.visibility="visible";
         const wavedeviation =document.getElementsByClassName(`wavecontainer`)[0].style.visibility="collapse";
         const roomdeviation =document.getElementsByClassName('room')[0].style.backgroundColor="#F0F8FF";
         const targetVideo = remoteVideos.querySelector(`[data-peer-id="${targetpeerId}"]`);
+        const targetNamed = remoteVideos.querySelector(`[userName="${targetpeerId}"]`);
+
+        if(targetNamed){
+          console.log("maru")
+          targetNamed.style.visibility='visible';
+        }
 
 
         if (targetVideo) {
           console.log(targetVideo)
 
-          contentdeviation
+          //streamdeviation
           wavedeviation
           roomdeviation
           targetVideo.style.visibility = 'visible';
@@ -372,15 +372,19 @@ at=false;
       if (data.pn === 'lowerhand') {
         const targetpeerId = data.msg;
         console.log('手を下げたユーザーのPeerID:', targetpeerId);
+        //手を下げたときのNamed処理
+        document.querySelectorAll('.Named').forEach(namedElem => {
+          namedElem.style.visibility = 'hidden';
+        });
         var cv = document.querySelectorAll('.content video');
         // 最初のCSSスタイル書き換え
         cv.forEach(cv => {
           cv.style.visibility = 'hidden';
         });
-        const contentdeviation = document.getElementsByClassName('content')[0].style.visibility="hidden";
+        const namedeviation = document.getElementsByClassName('Named')[0].style.visibility="hidden";
         const wavedeviation =document.getElementsByClassName(`wavecontainer`)[0].style.visibility="visible";
         const roomdeviation =document.getElementsByClassName('room')[0].style.backgroundColor="#F0F8FF";
-        contentdeviation
+        namedeviation
         wavedeviation
         roomdeviation
 

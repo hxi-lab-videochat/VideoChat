@@ -16,7 +16,6 @@ function render(percent) {
         clearTimeout(thresholdTimer);
         thresholdTimer = null;
     }
-    console.log("ima");
     waveBall.classList.add('active');
     timejudge = false;
   } else {
