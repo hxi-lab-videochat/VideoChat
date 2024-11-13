@@ -350,10 +350,22 @@ at=false;
     }
       var user = data.split(":");
       if(user.length==1){
-        messages.textContent +=`${user}\n`
+        messages.textContent +=`${user}\n\n`
       }else{
-        messages.textContent += `${user[0]}: ${cut(user[1])}\n`;
+        var msgid=document.createElement('div');
+        msgid.setAttribute('id',`${user[0]}`);
+        msgid.setAttribute('class','chatcolor');
+        var msgcolor=messages.querySelector(`.chatcolor`);
+        msgid.innerHTML=`${user[0]}: ${cut(user[1])}\n\n`
+        messages.appendChild(msgid);
+        try{
+          msgcolor.style.color='red';
+        }catch(e){
+          msgcolor.style.color='red';//errorのときのみ色が変わる
+        }
+        messages.textContent += `${user[0]}: ${cut(user[1])}\n\n`;
       }
+      console.log('hoge');
       let target = document.getElementById('js-messages');
       target.scrollTo(0,target.scrollHeight);
     });
@@ -373,7 +385,7 @@ at=false;
       userName.srcObject = null;
       userName.remove();
       removeUser(peerId);
-      messages.textContent += `=== ${"2"}退出しました ===\n`;
+      messages.textContent += `=== ${"2"}退出しました ===\n\n`;
       messages.textContent = null;
       roommoji.innerHTML="ルームの文字起こし";
       mymoji.innerHTML="あなたの文字起こし";
@@ -381,7 +393,7 @@ at=false;
     // for closing myself
     room.once('close', () => {
       sendTrigger.removeEventListener('click', onClickSend);
-      messages.textContent += '== 退出しました ===\n';
+      messages.textContent += '== 退出しました ===\n\n';
       messages.textContent = null;
       // Array.from(remoteVideos.children).forEach(remoteVideo => {
       //   remoteVideo.srcObject.getTracks().forEach(track => track.stop());
@@ -414,9 +426,16 @@ at=false;
         alert("No input");
         return;
       }
-      var s_msg=userm()+":"+localText.value;/*`${userm()}:${localText.value}`;*/
+      if(true){
+        console.log(userm());
+      }
+      var s_msg='--'+userm()+":_"+localText.value+'--';/*`${userm()}:${localText.value}`;*/
       room.send(s_msg);
-      messages.textContent += `${userm()}: ${cut(localText.value)}\n`;
+      var my_msgid=document.createElement('div');
+      my_msgid.setAttribute('id',`${userm()}`)
+      messages.appendChild(my_msgid);
+      my_msgid.innerHTML=`${userm()}: _${cut(localText.value)}\n\n`
+      messages.textContent += `${userm()}: ${cut(localText.value)}\n\n`;
       localText.value = '';
       let target = document.getElementById('js-messages');
       target.scrollTo(0,target.scrollHeight);
@@ -445,9 +464,9 @@ at=false;
       if (imgSrc !== "kyosyu2.png"){
         handImage.src = "img/kyosyu2.png";
         localText.value = '';
-        room.send('==対応に向かいます==\n');
+        room.send(`=== 対応に向かいます ===\n\n`);
         //room.send(localStream)
-        messages.textContent += '==対応に向かいます==\n';
+        messages.textContent += `=== 対応に向かいます ===\n\n`;
         localText.value = '';
         let target = document.getElementById('js-messages');
         target.scrollTo(0,target.scrollHeight);
@@ -463,9 +482,9 @@ at=false;
       }else{
         handImage.src = "img/kyosyu.png";
         localText.value = '';
-        room.send('==対応を終了します==\n');
+        room.send(`=== 対応を終了します ===\n\n`);
         //room.send(localStream)
-        messages.textContent += '==対応を終了します==\n';
+        messages.textContent += `=== 対応を終了します ===\n\n`;
         localText.value = '';
         let target = document.getElementById('js-messages');
         target.scrollTo(0,target.scrollHeight);

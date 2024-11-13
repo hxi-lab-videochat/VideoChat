@@ -58,11 +58,13 @@ async function speechm(te){
     for(let i=0;(i<ls.length);i++){
         for(let m=0;(te.length)>=ls[i].length+m;m++){
             if(te.length<ls[i]){
+                console.log(`${te}_:;${ls[i]}`);
                 break
             }
             let c = te.slice(m,(ls[i].length+m));
-            if(c==ls[i]){
-                notify(1,c);//1106:相手の話したことすべてに通知が来るバグ>>誰か対応中はつかわないか
+            if(c===ls[i]){
+                console.log(`${c}===${ls[i]}::で通知されました`);
+                notify(1,ls[i]);//1106:相手の話したことすべてに通知が来るバグ>>誰か対応中はつかわないか
                 break
             }
         }

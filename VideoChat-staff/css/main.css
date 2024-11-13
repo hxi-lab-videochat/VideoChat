@@ -116,3 +116,7 @@ display: none;
 #nav-menu ul li button:hover {
   background: #777;
 }
+
+.chatcolor{
+  color:red;
+}
