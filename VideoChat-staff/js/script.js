@@ -14,6 +14,7 @@ at=false;
   const meta = document.getElementById('js-meta');
   const sdkSrc = document.querySelector('script[src*=skyway]');
   const evc = document.getElementById('event');
+  const chatmsg = document.getElementById('chatmsg');
   //const atxt = document.getElementById('atxt');
   const roommoji = document.getElementById('menu_roommoji');
   const mymoji=document.getElementById("menu_mymoji");
@@ -357,13 +358,14 @@ at=false;
         msgid.setAttribute('class','chatcolor');
         var msgcolor=messages.querySelector(`.chatcolor`);
         msgid.innerHTML=`${user[0]}: ${cut(user[1])}\n\n`
-        messages.appendChild(msgid);
+        chatmsg.appendChild(msgid);
         try{
           msgcolor.style.color='red';
         }catch(e){
-          msgcolor.style.color='red';//errorのときのみ色が変わる
+          //msgcolor.style.color='red';//errorのときのみ色が変わる
+          console.log(e);
         }
-        messages.textContent += `${user[0]}: ${cut(user[1])}\n\n`;
+        //messages.textContent += `${user[0]}: ${cut(user[1])}\n\n`;
       }
       console.log('hoge');
       let target = document.getElementById('js-messages');
@@ -433,9 +435,9 @@ at=false;
       room.send(s_msg);
       var my_msgid=document.createElement('div');
       my_msgid.setAttribute('id',`${userm()}`)
-      messages.appendChild(my_msgid);
+      chatmsg.appendChild(my_msgid);
       my_msgid.innerHTML=`${userm()}: _${cut(localText.value)}\n\n`
-      messages.textContent += `${userm()}: ${cut(localText.value)}\n\n`;
+      //messages.textContent += `${userm()}: ${cut(localText.value)}\n\n`;
       localText.value = '';
       let target = document.getElementById('js-messages');
       target.scrollTo(0,target.scrollHeight);
