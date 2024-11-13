@@ -225,7 +225,11 @@ at=false;
 
     //自分が参加したとき
     room.once('open',async () => {
-      messages.textContent += '=== 参加しました ===\n';
+      var msg_system=document.createElement('div');
+      msg_system.setAttribute('id',`${userm()}`)
+      messages.appendChild(msg_system);
+      msg_system.innerHTML=`=== ${userm()}が参加しました ===\n\n`
+      //messages.textContent += '=== 参加しました ===\n';
       peer.listAllPeers((peers) => {
         console.log(peers);
         console.log('myid is '+peers[peers.length-1]);
@@ -236,7 +240,15 @@ at=false;
     });
     //他者が参加してきたとき
     room.on('peerJoin',async peerId => {
-      messages.textContent += `=== 参加しました! ===\n`;
+     var getName = remoteVideos.querySelector(
+        `[userName="${peerId}"]`)
+      var strname=getName.textContent;
+      console.log(strname);
+      var msg_system=document.createElement('div');
+      msg_system.setAttribute('id',`${strname}`)
+      messages.appendChild(msg_system);
+      msg_system.innerHTML=`=== ${strname}が参加しました ===\n\n`
+      //messages.textContent += `=== 参加しました! ===\n`;
       await console.log("ピアIDは:"+peerId);
       // await pid(peerId);
       // console.log(joinname);
@@ -358,7 +370,7 @@ at=false;
         msgid.setAttribute('class','chatcolor');
         var msgcolor=messages.querySelector(`.chatcolor`);
         msgid.innerHTML=`${user[0]}: ${cut(user[1])}\n\n`
-        chatmsg.appendChild(msgid);
+        messages.appendChild(msgid);
         try{
           msgcolor.style.color='red';
         }catch(e){
@@ -384,10 +396,15 @@ at=false;
       remoteVideo.srcObject.getTracks().forEach(track => track.stop());
       remoteVideo.srcObject = null;
       remoteVideo.remove();
+      var strname=userName.textContent;
       userName.srcObject = null;
       userName.remove();
       removeUser(peerId);
-      messages.textContent += `=== ${"2"}退出しました ===\n\n`;
+      var msg_system=document.createElement('div');
+      msg_system.setAttribute('id',`${strname}`)
+      messages.appendChild(msg_system);
+      msg_system.innerHTML=`=== ${strname}が退出しました ===\n\n`
+      //messages.textContent += `=== ${"2"}退出しました ===\n\n`;
       messages.textContent = null;
       roommoji.innerHTML="ルームの文字起こし";
       mymoji.innerHTML="あなたの文字起こし";
@@ -395,7 +412,7 @@ at=false;
     // for closing myself
     room.once('close', () => {
       sendTrigger.removeEventListener('click', onClickSend);
-      messages.textContent += '== 退出しました ===\n\n';
+      //messages.textContent += '== 退出しましたよ ===\n\n';
       messages.textContent = null;
       // Array.from(remoteVideos.children).forEach(remoteVideo => {
       //   remoteVideo.srcObject.getTracks().forEach(track => track.stop());
@@ -435,7 +452,7 @@ at=false;
       room.send(s_msg);
       var my_msgid=document.createElement('div');
       my_msgid.setAttribute('id',`${userm()}`)
-      chatmsg.appendChild(my_msgid);
+      messages.appendChild(my_msgid);
       my_msgid.innerHTML=`${userm()}: _${cut(localText.value)}\n\n`
       //messages.textContent += `${userm()}: ${cut(localText.value)}\n\n`;
       localText.value = '';
