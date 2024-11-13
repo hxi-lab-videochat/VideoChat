@@ -247,13 +247,6 @@ at=false;
       joinname.prid=peerId
       //room.send(joinname);
       //room.send(notifyname);
-      var strname=await get_username(peerId);
-      console.log(peerId);
-      console.log(strname);
-      var msg_system2=document.createElement('div');
-      msg_system2.setAttribute('id',`${strname}`)
-      messages.appendChild(msg_system2);
-      msg_system2.innerHTML=`=== ${strname}が参加しました ===\n\n`
     });
 
     // Render remote stream for new peer join in the room
@@ -293,6 +286,10 @@ at=false;
             peer.listAllPeers(async(peers) => {
               //console.log(peers);
               console.log(data.msg+'@id is '+peers[peers.length-1]);
+              var msg_system2=document.createElement('div');
+              msg_system2.setAttribute('id',`${data.msg}`)
+              messages.appendChild(msg_system2);
+              msg_system2.innerHTML=`=== ${data.msg}が参加しました ===\n\n`
               await room.send(joinuser(data.msg,peers[peers.length-1]));
               const userlst=joinuser(null,null).users;
               await Object.keys(userlst).forEach(async(id) => {
