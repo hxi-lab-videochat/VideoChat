@@ -240,14 +240,6 @@ at=false;
     });
     //他者が参加してきたとき
     room.on('peerJoin',async peerId => {
-     var getName = remoteVideos.querySelector(
-        `[userName="${peerId}"]`)
-      var strname=getName.textContent;
-      console.log(strname);
-      var msg_system=document.createElement('div');
-      msg_system.setAttribute('id',`${strname}`)
-      messages.appendChild(msg_system);
-      msg_system.innerHTML=`=== ${strname}が参加しました ===\n\n`
       //messages.textContent += `=== 参加しました! ===\n`;
       await console.log("ピアIDは:"+peerId);
       // await pid(peerId);
@@ -255,6 +247,13 @@ at=false;
       joinname.prid=peerId
       //room.send(joinname);
       //room.send(notifyname);
+      var strname=await get_username(peerId);
+      console.log(peerId);
+      console.log(strname);
+      var msg_system2=document.createElement('div');
+      msg_system2.setAttribute('id',`${strname}`)
+      messages.appendChild(msg_system2);
+      msg_system2.innerHTML=`=== ${strname}が参加しました ===\n\n`
     });
 
     // Render remote stream for new peer join in the room

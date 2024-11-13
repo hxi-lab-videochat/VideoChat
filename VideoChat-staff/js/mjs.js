@@ -167,3 +167,14 @@ function removeUser(id){
 function clearUser(){
     user={pn:'joinuser',users:{}}
 }
+
+function get_username(peerid){
+    try{
+        var user = user.users[peerid];
+        return user;
+    }catch(e){
+        console.log(e);
+        var user='hoge';
+        return user;
+    }
+}
