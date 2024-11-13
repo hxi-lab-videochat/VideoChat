@@ -444,7 +444,7 @@ at=false;
       if(true){
         console.log(userm());
       }
-      var s_msg='--'+userm()+":_"+localText.value+'--';/*`${userm()}:${localText.value}`;*/
+      var s_msg='//'+userm()+":_"+localText.value;/*`${userm()}:${localText.value}`;*/
       room.send(s_msg);
       var my_msgid=document.createElement('div');
       my_msgid.setAttribute('id',`${userm()}`)
