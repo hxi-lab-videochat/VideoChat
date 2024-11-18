@@ -42,7 +42,7 @@ function autotxtcookie(){
         console.log(list_data);
         for(n of list_name){
             //console.log(n);
-            if(n == 'autotxt' || n==" autotxt" ||n.includes('autotxt')){
+            if(n == 'autotxt' || n==" autotxt" || n.includes('autotxt')){
                 console.log(n);
                 break;
             }
