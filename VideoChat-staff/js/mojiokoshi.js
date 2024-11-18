@@ -5,14 +5,22 @@ function GCookies()
 {
     //console.log("gcookie");
     let list=[];
+    let hoge_key=[];
+    let hoge_value=[];
     var r = document.cookie.split(';'); 
     r.forEach(function(value) { 
         var content = value.split('=');
-        if(content[0]!=' autotxt' && content[0]!=' poptext'){
-            console.log(content[0]);
-            list.push( content[1] );
+        // console.log(content[0].includes('name'));
+        if(content[0].includes('name')){//content[0]!=' autotxt' && content[0]!=' poptext'
+            // console.log(content[0]);
+            hoge_key.push(content[0]);
+            hoge_value.push(content[1]);
+            list.push(content[1]);
         }  
     })
+    // console.log(list);
+    // console.log(hoge_key);
+    // console.log(hoge_value);
     return list;
 }
 
@@ -34,7 +42,7 @@ function autotxtcookie(){
         console.log(list_data);
         for(n of list_name){
             //console.log(n);
-            if(n == 'autotxt' || n==" autotxt"){
+            if(n == 'autotxt' || n==" autotxt" ||n.includes('autotxt')){
                 console.log(n);
                 break;
             }
@@ -50,7 +58,7 @@ function autotxtcookie(){
 async function speechm(te){
     //content.innerHTML += "test"
     //const ls=["こんにちは","おはよう","漢字"];
-    var ls= GCookies();
+    var ls= await GCookies();
     console.log(ls, te);
     if(ls==""){
         return;
