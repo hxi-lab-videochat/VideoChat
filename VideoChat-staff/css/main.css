@@ -129,12 +129,12 @@ button img {
   vertical-align: middle;
 }
 
-#js-join-trigger{
+/* #js-join-trigger{
   position: absolute;
   left: 0;
   bottom: 0;
   width: 150px;
-}
+} */
 #js-leave-trigger{
   position: absolute;
   left: 20 auto;
