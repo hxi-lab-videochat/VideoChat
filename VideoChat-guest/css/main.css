@@ -62,22 +62,48 @@ body {
   visibility: hidden;
 }
 
+.AllStream{
+  visibility: hidden;
+}
+.Named{
+  visibility: hidden;
+  position: absolute;
+  color: white;
+  top: -240px;
+  left: -310px;
+  z-index: 10;
+  font-size: 30px;
+}
+
 .remote-streams{
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  visibility: hidden;
 }
 .content video {
   margin: auto;
   margin-bottom: 5px;
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
 }
 #localVideo {
   visibility: collapse;
 }
 .strmyvideo{
+  visibility: hidden;
+  color:"white";
+  position: absolute;
+  top: 50;
+  left: 0;
+}
+.strName{
   visibility: hidden;
 }
 .chat, .send, .botom {
