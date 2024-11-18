@@ -62,7 +62,7 @@ function speechm(te){
             }
             let c = te.slice(m,(ls[i].length+m));
             if(c==ls[i]){
-                notify(1,c);
+                //notify(1,c);
                 break
             }
         }
