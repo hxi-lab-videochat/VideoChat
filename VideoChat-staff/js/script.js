@@ -231,7 +231,7 @@ at=false;
               await room.send(joinuser(data.msg,peers[peers.length-1]));
               const userlst=joinuser(null,null).users;
               await Object.keys(userlst).forEach(async(id) => {
-                console.log(id,userlst[id])
+                //console.log(id,userlst[id])
                 var addName= await remoteVideos.querySelector(`[userName="${id}"]`);
                 try{
                   addName.innerHTML=await userlst[id];
@@ -251,6 +251,7 @@ at=false;
             console.log(data);
             await updateUser(data);
             const userlst=joinuser(null,null).users;
+            console.log(userlst);
             await Object.keys(userlst).forEach(async(id) => {
               console.log(id,userlst[id])
               var addName= await remoteVideos.querySelector(`[userName="${id}"]`);

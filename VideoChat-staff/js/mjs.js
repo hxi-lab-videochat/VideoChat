@@ -149,9 +149,14 @@ function pid(str){
 
 function joinuser(key,id){
     if(key != null){
-        user.users[id]=key
+        try{
+            user.users[id]=key
+        }catch(e){
+            console.log(e);
+        }
         console.log(user);
     }
+    console.log(user);
     return user;
 }
 
@@ -161,7 +166,12 @@ function updateUser(data){
 }
 
 function removeUser(id){
+    console.log(`${id}++${user.users[id]}`);
+    if(delete user.users[id]){
+        console.log(delete user.users[id]);
+    }
     delete user.users[id];
+    console.log(user.users);
 }
 
 function clearUser(){
