@@ -172,7 +172,7 @@ at=false;
         console.log(peers);
         console.log('myid is '+peers[peers.length-1]);
         joinname.prid=peers[peers.length-1]
-        joinuser(decode_name,peers[peers.length-1])
+        //joinuser(decode_name,peers[peers.length-1])
       });
       await room.send(notifyname);
     });
@@ -228,7 +228,8 @@ at=false;
               msg_system2.setAttribute('id',`${data.msg}`)
               messages.appendChild(msg_system2);
               msg_system2.innerHTML=`=== ${data.msg}が参加しました ===\n\n`
-              await room.send(joinuser(data.msg,peers[peers.length-1]));
+              joinuser(data.msg,peers[peers.length-1])
+              await room.send(retnamelist());
               const userlst=joinuser(null,null).users;
               await Object.keys(userlst).forEach(async(id) => {
                 //console.log(id,userlst[id])
@@ -237,6 +238,7 @@ at=false;
                   addName.innerHTML=await userlst[id];
                 }catch(e){
                   console.log(e);
+                  console.log(userlst);
                   console.log(`peerid:${id},username:${userlst[id]}`);
                 }
                });
@@ -259,6 +261,7 @@ at=false;
                 addName.innerHTML=await userlst[id];
               }catch(e){
                 console.log(e);
+                console.log(userlst);
                 console.log(`peerid:${id},username:${userlst[id]}`);
               }
              })

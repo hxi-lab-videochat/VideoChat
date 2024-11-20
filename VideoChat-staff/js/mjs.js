@@ -147,6 +147,11 @@ function pid(str){
     pid=str;
 }
 
+function retnamelist(){
+    console.log(user);
+    return user;
+}
+
 function joinuser(key,id){
     if(key != null){
         try{
