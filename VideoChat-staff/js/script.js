@@ -155,7 +155,7 @@ at=false;
     strMyVideo.style.zIndex=10;
     strMyVideo.style.position="absolute";
     strMyVideo.style.color="white";
-    var notifyname = {pn:"username",msg:decode_name};
+    var notifyname = {pn:"username",msg:decode_name,id:''};
     var joinname = {pn:"joinuser",msg:decode_name,prid:""};
     toggleCamera();
     toggleMic();
@@ -171,9 +171,10 @@ at=false;
       peer.listAllPeers((peers) => {
         console.log(peers);
         console.log('myid is '+peers[peers.length-1]);
-        joinname.prid=peers[peers.length-1];
+        joinname.prid=peer.id;
+        notifyname.id=peer.id;
         if(peers.length==1){
-          joinuser(decode_name,peers[peers.length-1]);
+          joinuser(decode_name,peer.id);
         }
       });
       await room.send(notifyname);
@@ -225,12 +226,13 @@ at=false;
             //console.log("hog+"+data.msg);
             peer.listAllPeers(async(peers) => {
               //console.log(peers);
-              console.log(data.msg+'@id is '+peers[peers.length-1]);
+              console.log(data.msg+'@id is '+data.id);
               var msg_system2=document.createElement('div');
               msg_system2.setAttribute('id',`${data.msg}`)
               messages.appendChild(msg_system2);
               msg_system2.innerHTML=`=== ${data.msg}が参加しました ===\n\n`
-              joinuser(data.msg,peers[peers.length-1])
+              var ulist=joinuser(data.msg,data.id);//peers[peers.length-1]
+              console.log(ulist);
               await room.send(retnamelist());
               const userlst=joinuser(null,null).users;
               await Object.keys(userlst).forEach(async(id) => {

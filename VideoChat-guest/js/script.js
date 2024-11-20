@@ -132,7 +132,7 @@ at=false;
     strMyVideo.style.zIndex=10;
     strMyVideo.style.position="absolute";
     strMyVideo.style.color="white";
-    var notifyname = {pn:"username",msg:decode_name};
+    var notifyname = {pn:"username",msg:decode_name,id:''};
     var joinname = {pn:"joinuser",msg:decode_name,prid:""};
 
     //自分が参加したとき
@@ -142,8 +142,9 @@ at=false;
         console.log(peers);
         console.log('myid is '+peers[peers.length-1]);
         joinname.prid=peers[peers.length-1];
+        notifyname.id=peer.id;
         if(peers.length==1){
-          joinuser(decode_name,peers[peers.length-1]);
+          joinuser(decode_name,peer.id);
         }
       });
       await room.send(notifyname);
@@ -200,8 +201,8 @@ at=false;
             //console.log("hog+"+data.msg);
             peer.listAllPeers(async(peers) => {
               //console.log(peers);
-              console.log(data.msg+'@id is '+peers[peers.length-1]);
-              await room.send(joinuser(data.msg,peers[peers.length-1]));
+              console.log(data.msg+'@id is '+data.id);
+              await room.send(joinuser(data.msg,data.id));
               const userlst=joinuser(null,null).users;
               await Object.keys(userlst).forEach(async(id) => {
                 console.log(id,userlst[id])
