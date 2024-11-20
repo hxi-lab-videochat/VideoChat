@@ -177,6 +177,9 @@ at=false;
           joinuser(decode_name,peer.id);
         }
       });
+      if(notifyname.id==''){
+        notifyname.id=peer.id;
+      }
       await room.send(notifyname);
     });
     //他者が参加してきたとき
@@ -246,7 +249,12 @@ at=false;
               msg_system2.setAttribute('id',`${data.msg}`)
               messages.appendChild(msg_system2);
               msg_system2.innerHTML=`=== ${data.msg}が参加しました ===\n\n`
-              var ulist=joinuser(data.msg,data.id);//peers[peers.length-1]
+              var retid=data.id;
+              console.log('joinuserid::'+retid);
+              if(data.id==''){
+                 retid=peers[peers.length-1];
+              }
+              var ulist=joinuser(data.msg,retid);//peers[peers.length-1]
               console.log(ulist);
               await room.send(retnamelist());
               const userlst=joinuser(null,null).users;

@@ -148,6 +148,9 @@ at=false;
           joinuser(decode_name,peer.id);
         }
       });
+      if(notifyname.id==''){
+        notifyname.id=peer.id;
+      }
       await room.send(notifyname);
     });
     //他者が参加してきたとき
@@ -203,7 +206,11 @@ at=false;
             peer.listAllPeers(async(peers) => {
               //console.log(peers);
               console.log(data.msg+'@id is '+data.id);
-              await room.send(joinuser(data.msg,data.id));
+              var retid=data.id;
+              if(data.id==''){
+                 retid=peers[peers.length-1];
+              }
+              await room.send(joinuser(data.msg,retid));
               const userlst=joinuser(null,null).users;
               await Object.keys(userlst).forEach(async(id) => {
                 console.log(id,userlst[id])
