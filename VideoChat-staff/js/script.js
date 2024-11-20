@@ -214,6 +214,21 @@ at=false;
       //remoteVideos.append(newVideo);
       remoteVideos.append(remoteStream);
       await newVideo.play().catch(console.error);
+      var ulist=joinuser(null,null).users;//peers[peers.length-1]
+      console.log(ulist);
+      try{
+        await Object.keys(ulist).forEach(async(id) => {
+          var addName= await remoteVideos.querySelector(`[userName="${id}"]`);
+          console.log(addName);
+          try{
+            addName.innerHTML=await ulist[id];
+          }catch(e){
+            console.log(e);
+          }
+         })
+      }catch(e){
+        console.log(e);
+      }
     });
 
     room.on('data', async ({ data, src }) => {
