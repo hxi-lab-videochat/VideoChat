@@ -143,6 +143,7 @@ at=false;
         console.log('myid is '+peers[peers.length-1]);
         joinname.prid=peers[peers.length-1];
         notifyname.id=peer.id;
+        console.log(notifyname.id);
         if(peers.length==1){
           joinuser(decode_name,peer.id);
         }
