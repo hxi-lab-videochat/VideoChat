@@ -171,8 +171,10 @@ at=false;
       peer.listAllPeers((peers) => {
         console.log(peers);
         console.log('myid is '+peers[peers.length-1]);
-        joinname.prid=peers[peers.length-1]
-        //joinuser(decode_name,peers[peers.length-1])
+        joinname.prid=peers[peers.length-1];
+        if(peers.length==1){
+          joinuser(decode_name,peers[peers.length-1]);
+        }
       });
       await room.send(notifyname);
     });
