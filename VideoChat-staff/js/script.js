@@ -120,9 +120,9 @@ at=false;
     // Note that you need to ensure the peer has connected to signaling server
     // before using methods of peer instance.
     if (!peer.open) {
+      getStateRoom(peer.open);
       return;
     }
-    
     //ここif_12/14
     if(flg){
       return;

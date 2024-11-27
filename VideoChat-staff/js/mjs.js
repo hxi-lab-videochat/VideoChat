@@ -7,6 +7,7 @@ const localV = document.getElementById('js-local-stream');
 const remoteV = document.getElementById('js-remote-streams');
 const r_img=document.getElementById('r_img');
 const loading = document.querySelector(".loading");
+var connflg=true;
 
 var user={pn:'joinuser',users:{}};
 function cut(tx){
@@ -81,9 +82,24 @@ function Cookies()
     //ev.click();
     console.log(GCookies());
 }
+function getStateRoom(peer){
+    connflg=peer;
+    if(!connflg){
+        console.log(connflg);
+        join_t.click();
+    }else{
+        console.log(connflg);
+    }
+}
 window.addEventListener('DOMContentLoaded', function(){
     console.log("load: リソースファイルを全て読み込みました。");
       //3秒後にローディング画面を非表示にする
+    // while(connflg){
+    //     setTimeout(function(){
+    //         console.log('push_join');
+    //         join_t.click();
+    //     },1500);
+    // 
     setTimeout(() => {
         join_t.click();
         ev.click();
