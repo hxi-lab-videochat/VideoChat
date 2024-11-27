@@ -110,7 +110,7 @@
   background: #f9f9f9;
   z-index: 9;
 }
-
+*/
 button {
   background: #40c0e7;
   border: none;
@@ -127,22 +127,27 @@ button:hover {
 
 button img {
   vertical-align: middle;
-} */
+} 
 
-/* #js-join-trigger{
+#js-join-trigger{
   position: absolute;
   left: 0;
   bottom: 0;
   width: 150px;
-} */
+}
 
-/* #js-leave-trigger{
+ #js-leave-trigger{
   position: absolute;
   left: 20 auto;
   bottom: 0;
   width: 150px;
 }
 
+.textbox{
+  height: 80%;
+  width: 70%;
+}
+/*
 .notification {
   background-color: #52C9EE;
   color: #fff;
@@ -185,7 +190,7 @@ button img {
 .chat {
   position: fixed;
   width: 24.7%;
-  height: 90%;
+  height: 80%;
   left: 0;
   top: 0;
   overflow-y: scroll;
@@ -231,7 +236,7 @@ button img {
   /* 送信など */
   position: fixed;
   width: 25%;
-  height: 10%;
+  height: 20%;
   left: 0;
   bottom: 0;
   background: #52C9EE;

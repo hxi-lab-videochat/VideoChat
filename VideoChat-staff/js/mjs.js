@@ -6,6 +6,7 @@ const check_stream=document.getElementById('check_stream');
 const localV = document.getElementById('js-local-stream');
 const remoteV = document.getElementById('js-remote-streams');
 const r_img=document.getElementById('r_img');
+const loading = document.querySelector(".loading");
 
 var user={pn:'joinuser',users:{}};
 function cut(tx){
@@ -82,13 +83,13 @@ function Cookies()
 }
 window.addEventListener('DOMContentLoaded', function(){
     console.log("load: リソースファイルを全て読み込みました。");
-    setTimeout(function(){
+      //3秒後にローディング画面を非表示にする
+    setTimeout(() => {
         join_t.click();
-
         ev.click();
-        autotx_btn.click();
-        // console.log(join_t);
-    },2000);    
+        autotx_btn.click(); 
+        loading.classList.add("loaded");
+    }, 2000);
 });
 
 //jquery_menu
