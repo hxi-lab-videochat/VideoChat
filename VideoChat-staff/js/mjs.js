@@ -80,7 +80,7 @@ function Cookies()
     //ev.click();
     console.log(GCookies());
 }
-window.addEventListener('load', function(){
+window.addEventListener('DOMContentLoaded', function(){
     console.log("load: リソースファイルを全て読み込みました。");
     setTimeout(function(){
         join_t.click();
