@@ -40,7 +40,7 @@ function cut(tx){
 
 //notification
 function notify(n,n_str){
-    var ls_notify=["ルームに参加しました",'登録した語句を検知しました'];
+    var ls_notify=["ルームに参加しました",'登録した語句を検知しました','チャット'];
     var notify_text=ls_notify[n];
     Push.create(notify_text,{
       body:n_str,

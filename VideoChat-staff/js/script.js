@@ -336,6 +336,7 @@ at=false;
         var msgcolor=messages.querySelector(`.chatcolor`);
         msgid.innerHTML=`${user[0]}: ${cut(user[1])}\n\n`
         messages.appendChild(msgid);
+        notify(2,'チャットが更新されました。');
         try{
           msgcolor.style.color='red';
         }catch(e){
