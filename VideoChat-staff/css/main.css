@@ -55,22 +55,25 @@ body {
 }
 
 .content {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-content: space-between;
-  background: #fff;
-  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* ビデオの最小サイズを150pxに変更 */
+  grid-auto-rows: 150px; /* 行の高さを120pxに設定 */
+  gap: 20px; /* 要素間の隙間 */
+  justify-content: stretch; /* 各列が均等に幅を取る */
+  align-items: stretch; /* 各行が均等に高さを取る */
+  height: 100%; /* .contentが親要素の高さを埋める */
+  width: 100%; /* .contentが親要素の幅を埋める */
+  padding: 10px; /* 全体の余白 */
+  box-sizing: border-box; /* パディングを含む幅計算 */
 }
 
+
 .content video {
-  flex: 0 1 calc(33% - 10px);
-  height: 150px;
-  margin: 1%;
-  margin-bottom: 5px;
-  border-radius: 10px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  width: 100%; /* グリッドセル内で最大幅 */
+  aspect-ratio: 4 / 3; /* 4:3の縦横比を固定 */
+  object-fit: fill; /* ビデオがセル内に収まるように調整 */
+  border-radius: 8px; /* 角を少し丸める */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 影のスタイル */
 }
 
 .chat, .send, .botom {

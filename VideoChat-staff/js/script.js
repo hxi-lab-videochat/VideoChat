@@ -187,6 +187,50 @@ at=false;
       //room.send(notifyname);
     });
 
+    function adjustGrid() {
+      const content = document.querySelector('.content');
+      const videos = content.querySelectorAll('video');
+      const participantCount = videos.length;
+    
+      if (participantCount === 0) return; // ビデオが存在しない場合は処理をスキップ
+    
+      // コンテナの幅を取得
+      const contentWidth = content.offsetWidth;
+    
+      // 列数を計算 (最大4列)
+      const maxColumns = Math.min(4, Math.ceil(Math.sqrt(participantCount)));
+      const videoWidth = Math.floor(contentWidth / maxColumns) - 10; // 列の幅から間隔を引く
+      const videoHeight = videoWidth * 0.75; // 4:3の比率
+    
+      // グリッドの列数を設定
+      content.style.gridTemplateColumns = `repeat(${maxColumns}, 1fr)`;
+    
+      // 各ビデオのサイズを設定
+      videos.forEach(video => {
+        video.style.width = `${videoWidth}px`;
+        video.style.height = `${videoHeight}px`;
+      });
+    }
+    
+    // 初期化 & 動的調整
+    function initializeGrid() {
+      adjustGrid(); // 初期サイズ設定
+    
+      // リサイズイベントに対応
+      window.addEventListener('resize', adjustGrid);
+    
+      // 動的にビデオ要素が追加される場合の対応
+      const observer = new MutationObserver(() => {
+        requestAnimationFrame(adjustGrid); // 描画後にサイズを調整
+      });
+    
+      observer.observe(document.querySelector('.content'), { childList: true });
+    }
+    
+    // DOMが読み込まれたら実行
+    document.addEventListener('DOMContentLoaded', initializeGrid);
+    
+
     // Render remote stream for new peer join in the room
     room.on('stream', async stream => {
       const remoteStream = document.createElement('div');
@@ -370,6 +414,8 @@ at=false;
     evc.addEventListener('click',clg);
     sendTrigger.addEventListener('click', onClickSend);
     leaveTrigger.addEventListener('click', () => room.close(), { once: true });
+
+    
 
 
     function onClickSend() {
