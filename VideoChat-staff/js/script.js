@@ -1,6 +1,7 @@
 const Peer = window.Peer;
 flg=false;
 at=false;
+var isRoomMute=true;
 (async function main() {
   const localVideo = document.getElementById('js-local-stream');
   const joinTrigger = document.getElementById('js-join-trigger');
@@ -42,7 +43,25 @@ at=false;
       video: true
     })
     .catch(console.error);
-
+//12videomute;
+  function roomMute(){
+    peer.listAllPeers((list)=>{
+      console.log(list);
+      list.forEach((e)=>{
+        if(peer.id != e){
+          var videoObj = remoteVideos.querySelector(
+            `[data-peer-id="${e}"]`
+          );
+          videoObj.muted=isRoomMute;
+          console.log(`${e};${isRoomMute}_:roomSounsState`);
+          console.log(videoObj.muted);
+        }else{
+          console.log(`myid;${peer.id}==_listid;${e}`)
+        }
+      });
+      isRoomMute = !(isRoomMute);
+    })
+  }
 
   function toggleCamera() {
     const videoTracks = localStream.getVideoTracks();
@@ -103,7 +122,6 @@ at=false;
   localVideo.srcObject = localStream;
   localVideo.playsInline = true;
   await localVideo.play().catch(console.error);
-
 
   // eslint-disable-next-line require-atomic-updates
   const peer = (window.peer = new Peer({
@@ -201,6 +219,7 @@ at=false;
       const newVideo = document.createElement('video');
       newVideo.srcObject = stream;
       newVideo.playsInline = true;
+      newVideo.muted=false;
       console.log(stream.peerId);
       // mark peerId to find it later at peerLeave event 退出ユーザの識別
       newVideo.setAttribute('data-peer-id', stream.peerId);
@@ -298,6 +317,7 @@ at=false;
           return
         }else if(data.pn=='raisehand' || data.pn=='lowerhand'){
           console.log(data.pn);
+          roomMute();
           if(signOut.disabled){
             signOut.disabled=false;
             console.log('signOutButton-True');
