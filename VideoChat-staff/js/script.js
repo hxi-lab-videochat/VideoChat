@@ -54,7 +54,7 @@ var isRoomMute=true;
           );
           videoObj.muted=isRoomMute;
           console.log(`${e};${isRoomMute}_:roomSounsState`);
-          console.log(videoObj.muted);
+          console.log(`videoMute;${videoObj.muted}`);
         }else{
           console.log(`myid;${peer.id}==_listid;${e}`)
         }
